@@ -7,7 +7,7 @@ class LoginModal extends React.Component {
     this.state = {
       emailValue: '',
       passwordValue: '',
-      visible: false,
+      visible: true,
       isPending: false,
       errorMessage: '',
     };
