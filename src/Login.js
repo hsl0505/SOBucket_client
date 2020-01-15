@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal, Button } from 'antd';
 
 class LoginModal extends React.Component {
   constructor(props) {
@@ -6,11 +7,33 @@ class LoginModal extends React.Component {
     this.state = {
       emailValue: '',
       passwordValue: '',
-      isDisplay: 'none',
+      visible: false,
       isPending: false,
       errorMessage: '',
     };
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   handleOnChange(e, key) {
     this.setState({
@@ -18,12 +41,16 @@ class LoginModal extends React.Component {
     });
   }
 
-  handleOnClick(e) {
+  handleSubmitClick(e) {
     e.preventDefault();
     this.setState({ isPending: true });
     const { emailValue, passwordValue } = this.state;
+    console.log({
+      email: emailValue,
+      password: passwordValue,
+    });
     window
-      .fetch('url', {
+      .fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
         body: {
           email: emailValue,
@@ -34,11 +61,13 @@ class LoginModal extends React.Component {
         this.setState({
           emailValue: '',
           passwordValue: '',
-          isDisplay: 'none',
           isPending: false,
-          errorMessage:
-            data === 'OK' ? '성공적으로 가입되었습니다' : '실패했습니다',
         });
+        if (data === 'OK') {
+          this.setState({ visible: false });
+        } else {
+          this.setState({ errorMessage: '실패했습니다' });
+        }
       })
       .catch(error => {
         this.setState({
@@ -49,39 +78,49 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    const { handleOnChange, handleOnClick } = this;
+    const { handleOk, handleCancel, handleOnChange, handleSubmitClick } = this;
     const {
       emailValue,
       passwordValue,
-      isDisplay,
+      visible,
       isPending,
       errorMessage,
     } = this.state;
     return (
-      <div className="LoginModal" style={{ display: isDisplay }}>
-        <div>
-          <label> Email </label>
-          <input
-            type="text"
-            value={emailValue}
-            onChange={e => handleOnChange(e, 'emailValue')}
-            readOnly={isPending}
-          />
-        </div>
-        <div>
-          <label> Password </label>
-          <input
-            type="text"
-            value={passwordValue}
-            onChange={e => handleOnChange(e, 'emailValue')}
-            readOnly={isPending}
-          />
-        </div>
-        <div>
-          <label> Login </label>
-          <input type="submit" onClick={e => handleOnClick(e)} />
-          <span>{errorMessage}</span>
-        </div>
+      <div>
+        <Button onClick={this.showModal}>Open Modal</Button>
+        <Modal
+          title="Basic Modal"
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <div className="LoginModal">
+            <div>
+              <label> Email </label>
+              <input
+                type="text"
+                value={emailValue}
+                onChange={e => handleOnChange(e, 'emailValue')}
+                readOnly={isPending}
+              />
+            </div>
+            <div>
+              <label> Password </label>
+              <input
+                type="password"
+                value={passwordValue}
+                onChange={e => handleOnChange(e, 'passwordValue')}
+                readOnly={isPending}
+              />
+            </div>
+            <div>
+              <label> Login </label>
+              <input type="submit" onClick={e => handleSubmitClick(e)} />
+              <span>{errorMessage}</span>
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }
