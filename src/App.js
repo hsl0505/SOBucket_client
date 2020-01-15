@@ -1,8 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
 
-function App() {
-  return <div className="App"></div>;
+import Home from './pages/Home/Home';
+
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route path="/" render={() => <Home />} />
+        </Switch>
+      </div>
+    );
+  }
 }
-
-export default App;
