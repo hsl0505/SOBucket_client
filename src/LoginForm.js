@@ -31,6 +31,7 @@ class LoginForm extends React.Component {
     });
     window
       .fetch('https://jsonplaceholder.typicode.com/posts', {
+        //   .fetch('https://localhost:3001/user/login', {
         method: 'POST',
         headers: {
           typ: 'JWT',
@@ -47,7 +48,7 @@ class LoginForm extends React.Component {
           passwordValue: '',
           isPending: false,
         });
-        if (data === 'OK') {
+        if (data.id !== undefined) {
           hideModal();
         } else {
           this.setState({ errorMessage: '실패했습니다' });

@@ -41,7 +41,14 @@ class LoginModal extends React.Component {
     const { visible } = this.state;
     return (
       <div>
-        <Button onClick={showModal}>Open Modal</Button>
+        <Button
+          className="mainNav_loginBtn"
+          type="primary"
+          size="large"
+          onClick={showModal}
+        >
+          Log In
+        </Button>
         {/* <Modal
           title="Login"
           visible={visible}
