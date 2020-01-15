@@ -52,6 +52,10 @@ class LoginModal extends React.Component {
     window
       .fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
+        headers: {
+          typ: 'JWT',
+          alg: 'This is Token',
+        },
         body: {
           email: emailValue,
           password: passwordValue,
