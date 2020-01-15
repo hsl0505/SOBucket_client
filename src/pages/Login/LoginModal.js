@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 
-class LoginForm extends React.Component {
+class LoginModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,7 +67,6 @@ class LoginForm extends React.Component {
     const { handleOnChange, handleSubmitClick } = this;
     const { emailValue, passwordValue, isPending, errorMessage } = this.state;
     return (
-      //   <>
       <Modal
         title="Login"
         visible={visible}
@@ -94,15 +93,9 @@ class LoginForm extends React.Component {
           />
         </div>
         <span>{errorMessage}</span>
-        {/* <div>
-          <label> Login </label>
-          <input type="submit" onClick={e => handleSubmitClick(e)} />
-          <span>{errorMessage}</span>
-        </div> */}
-        {/* </> */}
       </Modal>
     );
   }
 }
 
-export default LoginForm;
+export default LoginModal;

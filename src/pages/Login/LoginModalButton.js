@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
-import LoginForm from './LoginForm';
+import LoginModal from './LoginModal';
 
-class LoginModal extends React.Component {
+class LoginModalButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +22,6 @@ class LoginModal extends React.Component {
     });
   };
 
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
   handleCancel = e => {
     console.log(e);
     this.setState({
@@ -37,7 +30,7 @@ class LoginModal extends React.Component {
   };
 
   render() {
-    const { handleOk, handleCancel, showModal, hideModal } = this;
+    const { handleCancel, showModal, hideModal } = this;
     const { visible } = this.state;
     return (
       <div>
@@ -49,21 +42,14 @@ class LoginModal extends React.Component {
         >
           Log In
         </Button>
-        {/* <Modal
-          title="Login"
-          visible={visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        > */}
-        <LoginForm
+        <LoginModal
           hideModal={hideModal}
           visible={visible}
           handleCancel={handleCancel}
         />
-        {/* </Modal> */}
       </div>
     );
   }
 }
 
-export default LoginModal;
+export default LoginModalButton;
