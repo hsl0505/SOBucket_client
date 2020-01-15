@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Button } from 'antd';
 import LoginForm from './LoginForm';
 
 class LoginModal extends React.Component {
@@ -37,19 +37,23 @@ class LoginModal extends React.Component {
   };
 
   render() {
-    const { handleOk, handleCancel, hideModal } = this;
+    const { handleOk, handleCancel, showModal, hideModal } = this;
     const { visible } = this.state;
     return (
       <div>
-        <Button onClick={this.showModal}>Open Modal</Button>
-        <Modal
-          title="Basic Modal"
+        <Button onClick={showModal}>Open Modal</Button>
+        {/* <Modal
+          title="Login"
           visible={visible}
           onOk={handleOk}
           onCancel={handleCancel}
-        >
-          <LoginForm hideModal={hideModal} />
-        </Modal>
+        > */}
+        <LoginForm
+          hideModal={hideModal}
+          visible={visible}
+          handleCancel={handleCancel}
+        />
+        {/* </Modal> */}
       </div>
     );
   }

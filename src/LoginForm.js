@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal } from 'antd';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -13,14 +14,14 @@ class LoginForm extends React.Component {
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
-  handleOnChange(e, key) {
+  handleOnChange = (e, key) => {
     this.setState({
       [key]: e.target.value,
     });
-  }
+  };
 
   handleSubmitClick(e) {
-    e.preventDefault();
+    console.log(e);
     this.setState({ isPending: true });
     const { hideModal } = this.props;
     const { emailValue, passwordValue } = this.state;
@@ -61,10 +62,18 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const { handleCancel, visible } = this.props;
     const { handleOnChange, handleSubmitClick } = this;
     const { emailValue, passwordValue, isPending, errorMessage } = this.state;
     return (
-      <>
+      //   <>
+      <Modal
+        title="Login"
+        visible={visible}
+        okText="login"
+        onOk={handleSubmitClick}
+        onCancel={handleCancel}
+      >
         <div>
           <label> Email </label>
           <input
@@ -83,12 +92,14 @@ class LoginForm extends React.Component {
             readOnly={isPending}
           />
         </div>
-        <div>
+        <span>{errorMessage}</span>
+        {/* <div>
           <label> Login </label>
           <input type="submit" onClick={e => handleSubmitClick(e)} />
           <span>{errorMessage}</span>
-        </div>
-      </>
+        </div> */}
+        {/* </> */}
+      </Modal>
     );
   }
 }
