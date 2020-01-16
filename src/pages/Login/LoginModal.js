@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
 class LoginModal extends React.Component {
@@ -97,5 +98,17 @@ class LoginModal extends React.Component {
     );
   }
 }
+
+LoginModal.defaultProps = {
+  visible: false,
+  hideModal: () => {},
+  handleCancel: () => {},
+};
+
+LoginModal.propTypes = {
+  visible: PropTypes.bool,
+  hideModal: PropTypes.func,
+  handleCancel: PropTypes.func,
+};
 
 export default LoginModal;

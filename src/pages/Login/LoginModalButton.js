@@ -13,17 +13,17 @@ class LoginModalButton extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  showModal = function() {
+  showModal() {
     this.setState({
       visible: true,
     });
-  };
+  }
 
-  hideModal = function() {
+  hideModal() {
     this.setState({
       visible: false,
     });
-  };
+  }
 
   handleCancel(e) {
     console.log(e);
