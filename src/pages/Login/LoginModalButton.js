@@ -8,26 +8,29 @@ class LoginModalButton extends React.Component {
     this.state = {
       visible: false,
     };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
-  showModal = () => {
+  showModal = function() {
     this.setState({
       visible: true,
     });
   };
 
-  hideModal = () => {
+  hideModal = function() {
     this.setState({
       visible: false,
     });
   };
 
-  handleCancel = e => {
+  handleCancel(e) {
     console.log(e);
     this.setState({
       visible: false,
     });
-  };
+  }
 
   render() {
     const { handleCancel, showModal, hideModal } = this;
