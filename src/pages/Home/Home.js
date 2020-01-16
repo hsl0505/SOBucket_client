@@ -7,6 +7,7 @@ export default class Home extends Component {
   constructor() {
     super();
     this.state = {
+      isLogin: false,
       // bucketList: null,
       bucketListLoad: true, // true는 로딩상태
       // fake data
@@ -53,11 +54,12 @@ export default class Home extends Component {
       todayBucketList,
       bucketListLoad,
       todayBucketListLoad,
+      isLogin,
     } = this.state;
 
     return (
       <div>
-        <MainTop />
+        <MainTop isLogin={isLogin} />
         <BucketList bucketList={bucketList} bucketListLoad={bucketListLoad} />
         <TodayBucketList
           todayBucketList={todayBucketList}
