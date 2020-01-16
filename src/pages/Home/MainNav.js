@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Button } from 'antd';
-
 import LoginModalButton from '../Login/LoginModalButton';
 
 export default class MainNav extends Component {
