@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 
-class LoginModal extends React.Component {
+export default class LoginModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,4 +98,4 @@ class LoginModal extends React.Component {
   }
 }
 
-export default LoginModal;
+// export default LoginModal;
