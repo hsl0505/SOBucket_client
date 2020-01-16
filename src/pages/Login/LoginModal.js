@@ -14,11 +14,11 @@ class LoginModal extends React.Component {
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
-  handleOnChange = (e, key) => {
+  handleOnChange(e, key) {
     this.setState({
       [key]: e.target.value,
     });
-  };
+  }
 
   handleSubmitClick(e) {
     console.log(e);
