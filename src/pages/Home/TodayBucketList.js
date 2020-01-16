@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import TodayBucket from './TodayBucket';
 
 const TodayBucketList = props => {
-  const { todayBucketList } = props;
+  const { todayBucketList, todayBucketListLoad } = props;
   const arrMap = todayBucketList.map(ele => (
-    <TodayBucket key={ele.id} todayBucket={ele} />
+    <TodayBucket
+      key={ele.id}
+      todayBucket={ele}
+      todayBucketListLoad={todayBucketListLoad}
+    />
   ));
   return (
     <div>
@@ -17,10 +21,12 @@ const TodayBucketList = props => {
 
 TodayBucketList.defaultProps = {
   todayBucketList: [],
+  todayBucketListLoad: true,
 };
 
 TodayBucketList.propTypes = {
   todayBucketList: PropTypes.arrayOf(PropTypes.object),
+  todayBucketListLoad: PropTypes.bool,
 };
 
 export default TodayBucketList;

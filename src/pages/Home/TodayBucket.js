@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
-import { Card } from 'antd';
+import { Card, Skeleton } from 'antd';
 
 const TodayBucket = props => {
   const { Meta } = Card;
-  const { todayBucket } = props;
+  const { todayBucket, todayBucketListLoad } = props;
 
   return (
     <div>
       <Card hoverable>
-        <Meta title={todayBucket.userName} description={todayBucket.title} />
-        {todayBucket.like}
-        퍼가요
+        <Skeleton loading={todayBucketListLoad}>
+          <Meta title={todayBucket.userName} description={todayBucket.title} />
+          {todayBucket.like}
+          퍼가요
+        </Skeleton>
       </Card>
     </div>
   );
@@ -20,6 +22,7 @@ const TodayBucket = props => {
 
 TodayBucket.defaultProps = {
   todayBucket: {},
+  todayBucketListLoad: true,
 };
 
 TodayBucket.propTypes = {
@@ -29,6 +32,7 @@ TodayBucket.propTypes = {
     title: PropTypes.string,
     like: PropTypes.number,
   }),
+  todayBucketListLoad: PropTypes.bool,
 };
 
 export default TodayBucket;

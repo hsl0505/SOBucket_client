@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
-class LoginModal extends React.Component {
+export default class LoginModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -111,4 +111,4 @@ LoginModal.propTypes = {
   handleCancel: PropTypes.func,
 };
 
-export default LoginModal;
+// export default LoginModal;
