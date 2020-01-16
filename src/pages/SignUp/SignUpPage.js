@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SignUpPage extends React.Component {
+export default class SignUpPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,7 +65,7 @@ class SignUpPage extends React.Component {
       errorMessage,
     } = this.state;
     return (
-      <div className="SignUpPage" className="modal">
+      <div className="SignUpPage">
         <div>
           <label> Email </label>
           <input
@@ -111,5 +111,3 @@ class SignUpPage extends React.Component {
     );
   }
 }
-
-export default SignUpPage;

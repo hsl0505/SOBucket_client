@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
 
-const Bucket = props => {
+export default function Bucket(props) {
   const { Meta } = Card;
   const { bucket, bucketListLoad } = props;
 
@@ -18,7 +18,7 @@ const Bucket = props => {
       </Card>
     </div>
   );
-};
+}
 
 Bucket.defaultProps = {
   bucket: {},
@@ -34,5 +34,3 @@ Bucket.propTypes = {
   }),
   bucketListLoad: PropTypes.bool,
 };
-
-export default Bucket;

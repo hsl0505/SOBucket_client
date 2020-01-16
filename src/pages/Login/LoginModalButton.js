@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import LoginModal from './LoginModal';
 
-class LoginModalButton extends React.Component {
+export default class LoginModalButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,5 +54,3 @@ class LoginModalButton extends React.Component {
     );
   }
 }
-
-export default LoginModalButton;
