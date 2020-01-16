@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodayBucket from './TodayBucket';
 
-const TodayBucketList = props => {
+export default function TodayBucketList(props) {
   const { todayBucketList, todayBucketListLoad } = props;
   const arrMap = todayBucketList.map(ele => (
     <TodayBucket
@@ -17,7 +17,7 @@ const TodayBucketList = props => {
       {arrMap}
     </div>
   );
-};
+}
 
 TodayBucketList.defaultProps = {
   todayBucketList: [],
@@ -28,5 +28,3 @@ TodayBucketList.propTypes = {
   todayBucketList: PropTypes.arrayOf(PropTypes.object),
   todayBucketListLoad: PropTypes.bool,
 };
-
-export default TodayBucketList;
