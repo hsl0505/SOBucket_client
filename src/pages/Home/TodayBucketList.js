@@ -12,9 +12,9 @@ export default function TodayBucketList(props) {
     />
   ));
   return (
-    <div>
-      <h2>오늘의 버킷 리스트</h2>
-      {arrMap}
+    <div className="todayBucketlists">
+      <h2 className="todayBucketsTitle">오늘의 버킷 리스트</h2>
+      <div className="todayBucketlist">{arrMap}</div>
     </div>
   );
 }

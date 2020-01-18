@@ -9,43 +9,48 @@ export default class Home extends Component {
     this.state = {
       isLogin: false,
       // bucketList: null,
-      bucketListLoad: true, // true는 로딩상태
+      bucketListLoad: false, // true는 로딩상태
       // fake data
       bucketList: [
         { id: 0, userName: '임현성', title: 'test', like: 5 },
         { id: 1, userName: '임현성', title: 'test', like: 5 },
         { id: 2, userName: '임현성', title: 'test', like: 5 },
+        { id: 3, userName: '임현성', title: 'test', like: 5 },
+        { id: 4, userName: '임현성', title: 'test', like: 5 },
+        { id: 5, userName: '임현성', title: 'test', like: 5 },
+        { id: 6, userName: '임현성', title: 'test', like: 5 },
+        { id: 7, userName: '임현성', title: 'test', like: 5 },
       ],
       // todayBucketList : null,
-      todayBucketListLoad: true, // true는 로딩상태
+      todayBucketListLoad: false, // true는 로딩상태
       // fake data
       todayBucketList: [
         { id: 0, userName: '임현성', title: 'test', like: 5 },
         { id: 1, userName: '임현성', title: 'test', like: 10 },
         { id: 2, userName: '임현성', title: 'test', like: 2 },
+        { id: 3, userName: '임현성', title: 'test', like: 8 },
       ],
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/buckets/home', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(result => {
-        this.setState({ bucketListLoad: false, bucketList: result.bucketList });
-      });
-
-    fetch('http://localhost:3001/buckets/home/today', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          todayBucketListLoad: false,
-          todayBucketList: result.todayBucketList,
-        });
-      });
+    // fetch('http://localhost:3001/buckets/home', {
+    //   method: 'GET',
+    // })
+    //   .then(res => res.json())
+    //   .then(result => {
+    //     this.setState({ bucketListLoad: false, bucketList: result.bucketList });
+    //   });
+    // fetch('http://localhost:3001/buckets/home/today', {
+    //   method: 'GET',
+    // })
+    //   .then(res => res.json())
+    //   .then(result => {
+    //     this.setState({
+    //       todayBucketListLoad: false,
+    //       todayBucketList: result.todayBucketList,
+    //     });
+    //   });
   }
 
   render() {
@@ -58,7 +63,7 @@ export default class Home extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="home">
         <MainTop isLogin={isLogin} />
         <BucketList bucketList={bucketList} bucketListLoad={bucketListLoad} />
         <TodayBucketList
