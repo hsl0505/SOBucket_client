@@ -2,14 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
+import testimg from '../../img/test_img.jpg';
 
 export default function Bucket(props) {
   const { Meta } = Card;
   const { bucket, bucketListLoad } = props;
 
   return (
-    <div>
-      <Card hoverable>
+    <div className="bucket">
+      <Card
+        className="bucketCard"
+        hoverable
+        cover={
+          bucketListLoad ? (
+            <div>example</div>
+          ) : (
+            <img className="testimg" alt="example" src={testimg} />
+          )
+        }
+      >
         <Skeleton loading={bucketListLoad}>
           <Meta title={bucket.userName} description={bucket.title} />
           {bucket.like}
