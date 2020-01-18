@@ -1,0 +1,20 @@
+.likeBtn {
+  display: flex;
+}
+
+.likeBtn_icon {
+  border: solid gray 2px;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 2px;
+  color: s;
+}
+
+.likeBtn_icon:hover {
+  transform: scale(1.2);
+}
+
+.likeCount {
+  font-size: 20px;
+  margin-left: 10px;
+}

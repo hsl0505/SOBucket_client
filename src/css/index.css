@@ -8,6 +8,8 @@
 @import './Home/Bucket.css';
 @import './Home/Todaybucketlists.css';
 @import './Home/Todaybucket.css';
+@import './Home/Like.css';
+@import './Home/GetBucket.css';
 
 * {
   box-sizing: border-box;
