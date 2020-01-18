@@ -12,14 +12,14 @@ export default class Home extends Component {
       bucketListLoad: false, // true는 로딩상태
       // fake data
       bucketList: [
-        { id: 0, userName: '임현성', title: 'test', like: 5 },
-        { id: 1, userName: '임현성', title: 'test', like: 5 },
-        { id: 2, userName: '임현성', title: 'test', like: 5 },
-        { id: 3, userName: '임현성', title: 'test', like: 5 },
-        { id: 4, userName: '임현성', title: 'test', like: 5 },
-        { id: 5, userName: '임현성', title: 'test', like: 5 },
-        { id: 6, userName: '임현성', title: 'test', like: 5 },
-        { id: 7, userName: '임현성', title: 'test', like: 5 },
+        { id: 0, userName: '임현성', title: 'test', like: 5, mylike: true },
+        { id: 1, userName: '임현성', title: 'test', like: 5, mylike: true },
+        { id: 2, userName: '임현성', title: 'test', like: 5, mylike: false },
+        { id: 3, userName: '임현성', title: 'test', like: 5, mylike: true },
+        { id: 4, userName: '임현성', title: 'test', like: 5, mylike: false },
+        { id: 5, userName: '임현성', title: 'test', like: 5, mylike: false },
+        { id: 6, userName: '임현성', title: 'test', like: 5, mylike: false },
+        { id: 7, userName: '임현성', title: 'test', like: 5, mylike: false },
       ],
       // todayBucketList : null,
       todayBucketListLoad: false, // true는 로딩상태
@@ -65,7 +65,11 @@ export default class Home extends Component {
     return (
       <div className="home">
         <MainTop isLogin={isLogin} />
-        <BucketList bucketList={bucketList} bucketListLoad={bucketListLoad} />
+        <BucketList
+          bucketList={bucketList}
+          bucketListLoad={bucketListLoad}
+          isLogin={isLogin}
+        />
         <TodayBucketList
           todayBucketList={todayBucketList}
           todayBucketListLoad={todayBucketListLoad}
