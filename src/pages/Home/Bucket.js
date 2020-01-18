@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
+import Like from './Like';
+import GetBucket from './GetBucket';
 import testimg from '../../img/test_img.jpg';
 
 export default function Bucket(props) {
   const { Meta } = Card;
-  const { bucket, bucketListLoad } = props;
+  const { bucket, bucketListLoad, isLogin } = props;
 
   return (
     <div className="bucket">
@@ -21,11 +23,22 @@ export default function Bucket(props) {
           )
         }
       >
-        <Skeleton loading={bucketListLoad}>
-          <Meta title={bucket.userName} description={bucket.title} />
-          {bucket.like}
-          퍼가요
+        <Skeleton className="bucketCard_skeleton" loading={bucketListLoad}>
+          <Meta
+            className="bucketCard_meta"
+            title={bucket.title}
+            description={bucket.userName}
+          />
         </Skeleton>
+        <div className="btns">
+          <Like
+            likeCount={bucket.like}
+            isLogin={isLogin}
+            mylike={bucket.mylike}
+            bucketId={bucket.id}
+          />
+          <GetBucket />
+        </div>
       </Card>
     </div>
   );
@@ -34,6 +47,7 @@ export default function Bucket(props) {
 Bucket.defaultProps = {
   bucket: {},
   bucketListLoad: true,
+  isLogin: false,
 };
 
 Bucket.propTypes = {
@@ -42,6 +56,8 @@ Bucket.propTypes = {
     userName: PropTypes.string,
     title: PropTypes.string,
     like: PropTypes.number,
+    mylike: PropTypes.bool,
   }),
   bucketListLoad: PropTypes.bool,
+  isLogin: PropTypes.bool,
 };
