@@ -1,0 +1,27 @@
+@import '~antd/dist/antd.css';
+@import './Home/Home.css';
+@import './Home/MainTop.css';
+@import './Home/MainSearch.css';
+@import './Home/MainNav.css';
+@import './Home/MainImg.css';
+@import './Home/Bucketlist.css';
+@import './Home/Bucket.css';
+@import './Home/Todaybucketlists.css';
+@import './Home/Todaybucket.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 130%;
+}
+
+#root {
+  width: 100%;
+}
+
+.app {
+  width: 100%;
+}

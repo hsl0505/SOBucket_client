@@ -8,7 +8,12 @@ export default function BucketList(props) {
     <Bucket key={ele.id} bucket={ele} bucketListLoad={bucketListLoad} />
   ));
 
-  return <div>{arrMap}</div>;
+  return (
+    <div className="bucketlists">
+      <h2 className="bucketlistTitle">Buckets !</h2>
+      <div className="bucketlist">{arrMap}</div>
+    </div>
+  );
 }
 
 BucketList.defaultProps = {

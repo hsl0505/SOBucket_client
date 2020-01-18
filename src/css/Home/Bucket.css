@@ -1,0 +1,14 @@
+.bucket {
+  width: 24%;
+  height: 500px;
+  float: left;
+  margin-right: 17px;
+}
+
+.bucketCard {
+  width: 100%;
+}
+.testimg {
+  width: 100%;
+  height: 300px;
+}

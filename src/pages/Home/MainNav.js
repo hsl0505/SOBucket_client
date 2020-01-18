@@ -8,7 +8,7 @@ export default function MainNav(props) {
   const { isLogin } = props;
   if (!isLogin) {
     return (
-      <div>
+      <div className="mainNav">
         <LoginModalButton />
         <Button className="mainNav_signupBtn" type="primary" size="large">
           Sign Up
@@ -17,7 +17,7 @@ export default function MainNav(props) {
     );
   }
   return (
-    <div>
+    <div className="mainNav">
       <Button type="primary" size="large">
         Log Out
       </Button>

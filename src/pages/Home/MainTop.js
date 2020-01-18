@@ -6,9 +6,11 @@ import MainNav from './MainNav';
 export default function MainTop(props) {
   const { isLogin } = props;
   return (
-    <div>
-      <MainSearch />
-      <MainNav isLogin={isLogin} />
+    <div className="mainTop">
+      <div className="mainTop_SnN">
+        <MainSearch className="mainSearch" />
+        <MainNav isLogin={isLogin} className="mainNav" />
+      </div>
       <div className="mainImg">img</div>
     </div>
   );

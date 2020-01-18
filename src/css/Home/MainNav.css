@@ -1,0 +1,7 @@
+.mainNav {
+  display: flex;
+}
+
+.mainNav_signupBtn {
+  margin-left: 30px;
+}

@@ -1,0 +1,9 @@
+.mainTop {
+  margin: 30px;
+  /* display: flex; */
+}
+
+.mainTop_SnN {
+  display: flex;
+  justify-content: space-between;
+}
