@@ -8,7 +8,7 @@ export default class LoginModal extends React.Component {
     this.state = {
       emailValue: '',
       passwordValue: '',
-      isValidating: 'false',
+      isValidating: '',
       errorMessage: '',
     };
     this.handleOnChange = this.handleOnChange.bind(this);
