@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from 'antd';
+import { Modal, Form, Input } from 'antd';
 
 export default class LoginModal extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class LoginModal extends React.Component {
     this.state = {
       emailValue: '',
       passwordValue: '',
-      isPending: false,
+      isValidating: 'false',
       errorMessage: '',
     };
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -23,7 +23,7 @@ export default class LoginModal extends React.Component {
 
   handleSubmitClick(e) {
     console.log(e);
-    this.setState({ isPending: true });
+    this.setState({ isValidating: 'validating' });
     const { hideModal } = this.props;
     const { emailValue, passwordValue } = this.state;
     console.log({
@@ -44,21 +44,22 @@ export default class LoginModal extends React.Component {
         },
       })
       .then(data => {
-        this.setState({
-          emailValue: '',
-          passwordValue: '',
-          isPending: false,
-        });
         if (data.id !== undefined) {
+          this.setState({
+            isValidating: 'success',
+          });
           hideModal();
         } else {
-          this.setState({ errorMessage: '실패했습니다' });
+          this.setState({
+            errorMessage: '실패했습니다',
+            isValidating: 'error',
+          });
         }
       })
       .catch(error => {
         this.setState({
           errorMessage: error.toString(),
-          isPending: false,
+          isValidating: 'error',
         });
       });
   }
@@ -66,7 +67,12 @@ export default class LoginModal extends React.Component {
   render() {
     const { handleCancel, visible } = this.props;
     const { handleOnChange, handleSubmitClick } = this;
-    const { emailValue, passwordValue, isPending, errorMessage } = this.state;
+    const {
+      emailValue,
+      passwordValue,
+      isValidating,
+      errorMessage,
+    } = this.state;
     return (
       <Modal
         title="Login"
@@ -75,25 +81,22 @@ export default class LoginModal extends React.Component {
         onOk={handleSubmitClick}
         onCancel={handleCancel}
       >
-        <div>
-          <label> Email </label>
-          <input
-            type="text"
-            value={emailValue}
-            onChange={e => handleOnChange(e, 'emailValue')}
-            readOnly={isPending}
-          />
-        </div>
-        <div>
-          <label> Password </label>
-          <input
-            type="password"
-            value={passwordValue}
-            onChange={e => handleOnChange(e, 'passwordValue')}
-            readOnly={isPending}
-          />
-        </div>
-        <span>{errorMessage}</span>
+        <Form>
+          <Form.Item label="Email" validateStatus={isValidating} hasFeedback>
+            <Input
+              type="text"
+              value={emailValue}
+              onChange={e => handleOnChange(e, 'emailValue')}
+            />
+          </Form.Item>
+          <Form.Item label="Password" validateStatus={isValidating} hasFeedback>
+            <Input.Password
+              value={passwordValue}
+              onChange={e => handleOnChange(e, 'passwordValue')}
+            />
+          </Form.Item>
+          <span>{errorMessage}</span>
+        </Form>
       </Modal>
     );
   }
