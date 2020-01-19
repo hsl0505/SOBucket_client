@@ -37,7 +37,7 @@ export default function Bucket(props) {
             mylike={bucket.mylike}
             bucketId={bucket.id}
           />
-          <GetBucket />
+          <GetBucket isLogin={isLogin} bucket={bucket} />
         </div>
       </Card>
     </div>
