@@ -4,10 +4,9 @@
 
 .likeBtn_icon {
   border: solid gray 2px;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 2px;
-  color: s;
+  border-radius: 15px;
+  font-size: 23px;
+  padding: 5px;
 }
 
 .likeBtn_icon:hover {
