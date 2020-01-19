@@ -14,7 +14,7 @@ export default class SignUpPage extends React.Component {
       confirmPwd: '',
       phoneValue: '',
       profileValue: '',
-      isValidating: false,
+      isValidating: '',
       errorMessage: '',
     };
     this.handleOnChange = this.handleOnChange.bind(this);
