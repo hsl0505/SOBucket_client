@@ -69,10 +69,15 @@ export default class Home extends Component {
     return (
       <div className="home">
         <MainTop isLogin={isLogin} searchClick={searchClick} />
-        <BucketList bucketList={bucketList} bucketListLoad={bucketListLoad} />
+        <BucketList
+          bucketList={bucketList}
+          bucketListLoad={bucketListLoad}
+          isLogin={isLogin}
+        />
         <TodayBucketList
           todayBucketList={todayBucketList}
           todayBucketListLoad={todayBucketListLoad}
+          isLogin={isLogin}
         />
       </div>
     );
@@ -80,13 +85,11 @@ export default class Home extends Component {
 }
 
 Home.defaultProps = {
-  searchValue: '',
   searchClick: () => {},
   isLogin: false,
 };
 
 Home.propTypes = {
-  searchValue: PropTypes.string,
   searchClick: PropTypes.func,
   isLogin: PropTypes.bool,
 };
