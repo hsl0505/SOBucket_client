@@ -4,11 +4,11 @@ import MainSearch from './MainSearch';
 import MainNav from './MainNav';
 
 export default function MainTop(props) {
-  const { isLogin } = props;
+  const { isLogin, searchClick } = props;
   return (
     <div className="mainTop">
       <div className="mainTop_SnN">
-        <MainSearch className="mainSearch" />
+        <MainSearch className="mainSearch" searchClick={searchClick} />
         <MainNav isLogin={isLogin} className="mainNav" />
       </div>
       <div className="mainImg">img</div>
@@ -18,8 +18,10 @@ export default function MainTop(props) {
 
 MainTop.defaultProps = {
   isLogin: false,
+  searchClick: () => {},
 };
 
 MainTop.propTypes = {
   isLogin: PropTypes.bool,
+  searchClick: PropTypes.func,
 };

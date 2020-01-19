@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MainTop from './MainTop';
 import BucketList from './BucketList';
 import TodayBucketList from './TodayBucketList';
 
 export default class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { isLogin } = this.props;
     this.state = {
-      isLogin: false,
+      isLogin,
       // bucketList: null,
       bucketListLoad: false, // true는 로딩상태
       // fake data
@@ -62,14 +64,12 @@ export default class Home extends Component {
       isLogin,
     } = this.state;
 
+    const { searchClick } = this.props;
+
     return (
       <div className="home">
-        <MainTop isLogin={isLogin} />
-        <BucketList
-          bucketList={bucketList}
-          bucketListLoad={bucketListLoad}
-          isLogin={isLogin}
-        />
+        <MainTop isLogin={isLogin} searchClick={searchClick} />
+        <BucketList bucketList={bucketList} bucketListLoad={bucketListLoad} />
         <TodayBucketList
           todayBucketList={todayBucketList}
           todayBucketListLoad={todayBucketListLoad}
@@ -78,3 +78,15 @@ export default class Home extends Component {
     );
   }
 }
+
+Home.defaultProps = {
+  searchValue: '',
+  searchClick: () => {},
+  isLogin: false,
+};
+
+Home.propTypes = {
+  searchValue: PropTypes.string,
+  searchClick: PropTypes.func,
+  isLogin: PropTypes.bool,
+};

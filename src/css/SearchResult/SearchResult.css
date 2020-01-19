@@ -1,0 +1,20 @@
+.searchResult_top {
+  margin: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchResult_title {
+  margin: 30px;
+}
+
+.searchBucketList {
+  margin: 30px;
+}
+
+.searchBucket_loading {
+  font-size: 70px;
+  position: relative;
+  left: 45%;
+  top: 300px;
+}
