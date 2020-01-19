@@ -20,7 +20,7 @@ export default class Like extends Component {
     if (clickLike) {
       fetch('http://localhost:3001/buckets/like', {
         method: 'POST',
-        body: { isLike, bucketId },
+        body: JSON.stringify({ isLike, bucketId }),
         headers: {
           'Content-Type': 'application/json',
         },
