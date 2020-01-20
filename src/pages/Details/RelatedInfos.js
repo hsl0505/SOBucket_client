@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RelatedDetail from './RelatedDetail';
 
-// export default function RelatedInfos() {
-//   const {} = props;
-//   // const arrMap = aa.map(ele => <RelatedDetail key={} />);
+export default function RelatedInfos(props) {
+  const { relatedClasses } = props;
+  const arrMap = relatedClasses.map(ele => <RelatedDetail key={ele} />);
 
-//   return <div>{arrMap}</div>;
-// }
+  return <div>{arrMap}</div>;
+}
 
-// RelatedInfos.defaultProps = {
-//   // bucketList: [],
-//   // bucketListLoad: true,
-// };
+RelatedInfos.defaultProps = {
+  relatedClasses: [],
+};
 
-// RelatedInfos.propTypes = {
-//   // bucketList: PropTypes.arrayOf(PropTypes.object),
-//   // bucketListLoad: PropTypes.bool,
-// };
+RelatedInfos.propTypes = {
+  relatedClasses: PropTypes.arrayOf(PropTypes.string),
+};
