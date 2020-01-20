@@ -31,19 +31,20 @@ export default class LoginModal extends React.Component {
       password: passwordValue,
     });
     window
-      .fetch('https://jsonplaceholder.typicode.com/posts', {
-        //   .fetch('https://localhost:3001/user/login', {
+      .fetch('http://127.0.0.1:3001/user/login', {
         method: 'POST',
         headers: {
-          typ: 'JWT',
-          alg: 'This is Token',
+          'Content-Type': 'application/json',
         },
-        body: {
+        body: JSON.stringify({
           email: emailValue,
           password: passwordValue,
-        },
+        }),
+        credentials: 'include',
       })
+      .then(result => result.json())
       .then(data => {
+        console.log('data', data);
         if (data.id !== undefined) {
           this.setState({
             isValidating: 'success',

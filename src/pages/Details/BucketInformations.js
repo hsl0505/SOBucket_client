@@ -1,16 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Descriptions } from 'antd';
 
-export default function BucketInformations() {
+export default function BucketInformations(props) {
+  const { user_id, expectedDate, image } = props;
   return (
-    <div>
-      <div>제목</div>
-      <div>예정일자/남은시간</div>
-      <div>내용</div>
-      <div>사진</div>
-      <button type="button">좋아요</button>
-      <button type="button">퍼가요</button>
-      <button type="button">완료</button>
-      <button type="button">수정</button>
-    </div>
+    <Descriptions size="small" column={3}>
+      <Descriptions.Item label="expectedDate">{expectedDate}</Descriptions.Item>
+      <Descriptions.Item label="user_id">{user_id}</Descriptions.Item>
+      <Descriptions.Item label="Image">{image}</Descriptions.Item>
+      <Descriptions.Item label="Effective Time">2017-10-10</Descriptions.Item>
+      <Descriptions.Item label="Remarks">
+        Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
+      </Descriptions.Item>
+    </Descriptions>
   );
 }
+
+BucketInformations.defaultProps = {
+  image: 'image',
+  expectedDate: new Date(),
+  user_id: 0,
+};
+
+BucketInformations.propTypes = {
+  image: PropTypes.string,
+  expectedDate: PropTypes.any,
+  user_id: PropTypes.number,
+};

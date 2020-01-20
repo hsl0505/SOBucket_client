@@ -5,15 +5,13 @@ import { Card, Skeleton } from 'antd';
 
 export default function RelatedDetail(props) {
   const { Meta } = Card;
-  const { relatedDetailLoad } = props;
+  const { relatedDetailLoad, _class } = props;
 
   return (
     <div>
       <Card hoverable>
         <Skeleton loading={relatedDetailLoad}>
-          <Meta title={bucket.userName} description={bucket.title} />
-          {bucket.like}
-          퍼가요
+          <Meta title={_class.title} description={_class.description} />
         </Skeleton>
       </Card>
     </div>
@@ -21,16 +19,14 @@ export default function RelatedDetail(props) {
 }
 
 RelatedDetail.defaultProps = {
-  //   bucket: {},
-  //   bucketListLoad: true,
+  _class: {},
+  relatedDetailLoad: true,
 };
 
 RelatedDetail.propTypes = {
-  //   bucket: PropTypes.shape({
-  //     id: PropTypes.number,
-  //     userName: PropTypes.string,
-  //     title: PropTypes.string,
-  //     like: PropTypes.number,
-  //   }),
-  //   bucketListLoad: PropTypes.bool,
+  _class: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  relatedDetailLoad: PropTypes.bool,
 };
