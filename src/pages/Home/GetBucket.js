@@ -55,6 +55,6 @@ GetBucket.propTypes = {
     content: PropTypes.string,
     userName: PropTypes.string,
     title: PropTypes.string,
-    expectedDate: PropTypes.instanceOf(Date),
+    expectedDate: PropTypes.string,
   }),
 };
