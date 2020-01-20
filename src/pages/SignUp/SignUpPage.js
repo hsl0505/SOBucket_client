@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Input, Form } from 'antd';
+import { Input, Form } from 'antd';
 
-const { Header, Content, Footer } = Layout;
+import Page from '../page';
 
 export default class SignUpPage extends React.Component {
   constructor(props) {
@@ -59,12 +59,6 @@ export default class SignUpPage extends React.Component {
         })
         .then(data => {
           this.setState({
-            emailValue: '',
-            usernameValue: '',
-            nicknameValue: '',
-            passwordValue: '',
-            phoneValue: '',
-            profileValue: '',
             isValidating: data === 'OK' ? 'success' : 'error',
             errorMessage:
               data === 'OK'
@@ -95,117 +89,87 @@ export default class SignUpPage extends React.Component {
       errorMessage,
     } = this.state;
     return (
-      <Layout>
-        <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['3']}
-            style={{ lineHeight: '64px' }}
-          >
-            <Menu.Item key="1">Home</Menu.Item>
-            <Menu.Item key="2">Login</Menu.Item>
-            <Menu.Item key="3">SignUp</Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px', marginTop: 64 }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>SignUp</Breadcrumb.Item>
-          </Breadcrumb>
-          <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
-            <Form>
-              <Form.Item
-                label="Email"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input
-                  type="text"
-                  value={emailValue}
-                  onChange={e => handleOnChange(e, 'emailValue')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="userName"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input
-                  type="text"
-                  value={usernameValue}
-                  onChange={e => handleOnChange(e, 'usernameValue')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Nickname"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input
-                  type="text"
-                  value={nicknameValue}
-                  onChange={e => handleOnChange(e, 'nicknameValue')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Password"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input.Password
-                  value={passwordValue}
-                  onChange={e => handleOnChange(e, 'passwordValue')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Confirm Password"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input.Password
-                  value={confirmPwd}
-                  onChange={e => handleOnChange(e, 'confirmPwd')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Phone"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input
-                  type="text"
-                  value={phoneValue}
-                  onChange={e => handleOnChange(e, 'phoneValue')}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Profile"
-                validateStatus={isValidating}
-                hasFeedback
-              >
-                <Input
-                  type="file"
-                  value={profileValue}
-                  onChange={e => handleOnChange(e, 'profileValue')}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  type="submit"
-                  value="회원가입"
-                  onClick={e => handleOnClick(e)}
-                />
-                <span>{errorMessage}</span>
-              </Form.Item>
-            </Form>
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
-      </Layout>
+      <Page crumbMenu={['Home', 'Signup']} defaultSelect={['3']}>
+        <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+          <Form>
+            <Form.Item label="Email" validateStatus={isValidating} hasFeedback>
+              <Input
+                type="text"
+                value={emailValue}
+                onChange={e => handleOnChange(e, 'emailValue')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="userName"
+              validateStatus={isValidating}
+              hasFeedback
+            >
+              <Input
+                type="text"
+                value={usernameValue}
+                onChange={e => handleOnChange(e, 'usernameValue')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Nickname"
+              validateStatus={isValidating}
+              hasFeedback
+            >
+              <Input
+                type="text"
+                value={nicknameValue}
+                onChange={e => handleOnChange(e, 'nicknameValue')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              validateStatus={isValidating}
+              hasFeedback
+            >
+              <Input.Password
+                value={passwordValue}
+                onChange={e => handleOnChange(e, 'passwordValue')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Confirm Password"
+              validateStatus={isValidating}
+              hasFeedback
+            >
+              <Input.Password
+                value={confirmPwd}
+                onChange={e => handleOnChange(e, 'confirmPwd')}
+              />
+            </Form.Item>
+            <Form.Item label="Phone" validateStatus={isValidating} hasFeedback>
+              <Input
+                type="text"
+                value={phoneValue}
+                onChange={e => handleOnChange(e, 'phoneValue')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Profile"
+              validateStatus={isValidating}
+              hasFeedback
+            >
+              <Input
+                type="file"
+                value={profileValue}
+                onChange={e => handleOnChange(e, 'profileValue')}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
+                type="submit"
+                value="회원가입"
+                onClick={e => handleOnClick(e)}
+              />
+              <span>{errorMessage}</span>
+            </Form.Item>
+          </Form>
+        </div>
+      </Page>
     );
   }
 }
