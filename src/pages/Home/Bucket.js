@@ -27,12 +27,12 @@ export default function Bucket(props) {
           <Meta
             className="bucketCard_meta"
             title={bucket.title}
-            description={bucket.userName}
+            description={bucket.userNickName}
           />
         </Skeleton>
         <div className="btns">
           <Like
-            likeCount={bucket.like}
+            likeCount={bucket.likeCount}
             isLogin={isLogin}
             mylike={bucket.mylike}
             bucketId={bucket.id}
@@ -53,9 +53,9 @@ Bucket.defaultProps = {
 Bucket.propTypes = {
   bucket: PropTypes.shape({
     id: PropTypes.number,
-    userName: PropTypes.string,
+    userNickName: PropTypes.string,
     title: PropTypes.string,
-    like: PropTypes.number,
+    likeCount: PropTypes.number,
     mylike: PropTypes.bool,
   }),
   bucketListLoad: PropTypes.bool,
