@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
+import Like from './Like';
+import GetBucket from './GetBucket';
 import testimg from '../../img/test_img.jpg';
 
 export default function TodayBucket(props) {
   const { Meta } = Card;
-  const { todayBucket, todayBucketListLoad } = props;
+  const { todayBucket, todayBucketListLoad, isLogin } = props;
 
   return (
     <div className="todaybucket">
@@ -21,11 +23,22 @@ export default function TodayBucket(props) {
           )
         }
       >
-        <Skeleton loading={todayBucketListLoad}>
-          <Meta title={todayBucket.userName} description={todayBucket.title} />
-          {todayBucket.like}
-          퍼가요
+        <Skeleton className="bucketCard_skeleton" loading={todayBucketListLoad}>
+          <Meta
+            className="bucketCard_meta"
+            title={todayBucket.title}
+            description={todayBucket.userNickName}
+          />
         </Skeleton>
+        <div className="btns">
+          <Like
+            likeCount={todayBucket.likeCount}
+            isLogin={isLogin}
+            mylike={todayBucket.mylike}
+            bucketId={todayBucket.id}
+          />
+          <GetBucket isLogin={isLogin} bucket={todayBucket} />
+        </div>
       </Card>
     </div>
   );
@@ -34,14 +47,17 @@ export default function TodayBucket(props) {
 TodayBucket.defaultProps = {
   todayBucket: {},
   todayBucketListLoad: true,
+  isLogin: false,
 };
 
 TodayBucket.propTypes = {
   todayBucket: PropTypes.shape({
     id: PropTypes.number,
-    userName: PropTypes.string,
+    userNickName: PropTypes.string,
     title: PropTypes.string,
-    like: PropTypes.number,
+    likeCount: PropTypes.number,
+    mylike: PropTypes.bool,
   }),
   todayBucketListLoad: PropTypes.bool,
+  isLogin: PropTypes.bool,
 };
