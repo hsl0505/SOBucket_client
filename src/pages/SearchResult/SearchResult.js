@@ -9,51 +9,59 @@ export default class SearchResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   searchBuckets: [],
+      searchBuckets: [],
       // fake data
-      searchBuckets: [
-        { id: 0, userName: '임현성', title: 'test', like: 5, mylike: true },
-        { id: 1, userName: '임현성', title: 'test', like: 5, mylike: true },
-        { id: 2, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 3, userName: '임현성', title: 'test', like: 5, mylike: true },
-        { id: 4, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 5, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 6, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 7, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 8, userName: '임현성', title: 'test', like: 5, mylike: false },
-        { id: 9, userName: '임현성', title: 'test', like: 5, mylike: false },
-      ],
-      bucketListLoad: false,
+      // searchBuckets: [
+      //   { id: 0, userName: '임현성', title: 'test', like: 5, mylike: true },
+      //   { id: 1, userName: '임현성', title: 'test', like: 5, mylike: true },
+      //   { id: 2, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 3, userName: '임현성', title: 'test', like: 5, mylike: true },
+      //   { id: 4, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 5, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 6, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 7, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 8, userName: '임현성', title: 'test', like: 5, mylike: false },
+      //   { id: 9, userName: '임현성', title: 'test', like: 5, mylike: false },
+      // ],
+      bucketListLoad: true,
     };
   }
 
   componentDidMount() {
-    // const { searchValue } = this.props;
-    // fetch(`http://localhost:3001/buckets/search/?q=${searchValue}`, {
-    //   method: 'GET',
-    //   credentials: 'include',
-    // })
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     this.setState({
-    //       searchBuckets: result.searchBuckets,
-    //       bucketListLoad: false,
-    //     });
-    //   });
+    const { searchValue } = this.props;
+    fetch(`http://localhost:3001/buckets/search/?q=${searchValue}`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.searchBuckets.length === 0) {
+          this.setState({ searchBuckets: null });
+        } else {
+          this.setState({
+            searchBuckets: result.searchBuckets,
+            bucketListLoad: false,
+          });
+        }
+      });
   }
 
   render() {
     const { searchValue, searchClick, isLogin } = this.props;
     const { searchBuckets, bucketListLoad } = this.state;
-
-    const arrMap = searchBuckets.map(ele => (
-      <Bucket
-        key={ele.id}
-        bucket={ele}
-        isLogin={isLogin}
-        bucketListLoad={bucketListLoad}
-      />
-    ));
+    let arrMap;
+    if (searchBuckets === null) {
+      arrMap = <div>검색결과가 없습니다</div>;
+    } else {
+      arrMap = searchBuckets.map(ele => (
+        <Bucket
+          key={ele.id}
+          bucket={ele}
+          isLogin={isLogin}
+          bucketListLoad={bucketListLoad}
+        />
+      ));
+    }
 
     return (
       <div className="searchResult">
@@ -63,7 +71,7 @@ export default class SearchResult extends Component {
         </div>
         <h3 className="searchResult_title">{`${searchValue} 에 대한 buckets !`}</h3>
         <div className="searchBucketList">
-          {searchBuckets.length === 0 ? (
+          {Array.isArray(searchBuckets) && searchBuckets.length === 0 ? (
             <Icon className="searchBucket_loading" type="sync" spin />
           ) : (
             arrMap
