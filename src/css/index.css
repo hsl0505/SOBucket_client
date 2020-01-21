@@ -11,6 +11,7 @@
 @import './Home/Like.css';
 @import './Home/GetBucket.css';
 @import './SearchResult/SearchResult.css';
+@import './Details/BucketInformations.css';
 
 * {
   box-sizing: border-box;
