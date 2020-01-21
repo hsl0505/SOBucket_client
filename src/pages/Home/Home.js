@@ -7,9 +7,7 @@ import TodayBucketList from './TodayBucketList';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    const { isLogin } = this.props;
     this.state = {
-      isLogin,
       bucketList: [],
       bucketListLoad: true, // true는 로딩상태
       // fake data
@@ -36,15 +34,17 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/buckets/home', {
+    fetch('http://127.0.0.1:3001/buckets/home', {
       method: 'GET',
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
         this.setState({ bucketListLoad: false, bucketList: result.bucketList });
       });
-    fetch('http://localhost:3001/buckets/home/today', {
+    fetch('http://127.0.0.1:3001/buckets/home/today', {
       method: 'GET',
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
@@ -61,14 +61,17 @@ export default class Home extends Component {
       todayBucketList,
       bucketListLoad,
       todayBucketListLoad,
-      isLogin,
     } = this.state;
 
-    const { searchClick } = this.props;
+    const { searchClick, loginHandle, isLogin } = this.props;
 
     return (
       <div className="home">
-        <MainTop isLogin={isLogin} searchClick={searchClick} />
+        <MainTop
+          isLogin={isLogin}
+          searchClick={searchClick}
+          loginHandle={loginHandle}
+        />
         <BucketList
           bucketList={bucketList}
           bucketListLoad={bucketListLoad}
@@ -87,9 +90,11 @@ export default class Home extends Component {
 Home.defaultProps = {
   searchClick: () => {},
   isLogin: false,
+  loginHandle: () => {},
 };
 
 Home.propTypes = {
   searchClick: PropTypes.func,
   isLogin: PropTypes.bool,
+  loginHandle: PropTypes.func,
 };

@@ -9,8 +9,8 @@ export default function GetBucket(props) {
     if (!isLogin) {
       console.log('로긴해야함');
     } else {
-      message.loading('my bucket에 담는 중').then(() => {
-        fetch('http://localhost:3001/buckets/fork', {
+      message.loading('my bucket에 담는 중', 1).then(() => {
+        fetch('http://127.0.0.1:3001/buckets/fork', {
           method: 'POST',
           body: JSON.stringify({
             title: bucket.title,

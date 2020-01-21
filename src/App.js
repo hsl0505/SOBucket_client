@@ -14,6 +14,25 @@ export default class App extends Component {
     };
 
     this.searchClick = this.searchClick.bind(this);
+    this.loginHandle = this.loginHandle.bind(this);
+  }
+
+  componentDidMount() {
+    const forLogin = localStorage.getItem('isLogin');
+    if (forLogin === 'true') {
+      this.setState({ isLogin: true });
+    } else {
+      this.setState({ isLogin: false });
+    }
+  }
+
+  loginHandle() {
+    const { isLogin } = this.state;
+    if (!isLogin) {
+      this.setState({ isLogin: true });
+    } else {
+      this.setState({ isLogin: false });
+    }
   }
 
   searchClick(value) {
@@ -30,7 +49,11 @@ export default class App extends Component {
             exact
             path="/Home"
             render={() => (
-              <Home searchClick={this.searchClick} isLogin={isLogin} />
+              <Home
+                searchClick={this.searchClick}
+                isLogin={isLogin}
+                loginHandle={this.loginHandle}
+              />
             )}
           />
           {/* <Route path="bucket/detail/:id" render={() => <BucketDetails />} /> */}
