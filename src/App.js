@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import Home from './pages/Home/Home';
 import SearchResult from './pages/SearchResult/SearchResult';
 import BucketDetailPage from './pages/Details/BucketDetailPage';
-// import SignUpPage from './pages/SignUp/SignUpPage';
 import MyPage from './pages/Mypage/MyPage';
+import SignUpPage from './pages/SignUp/SignUpPage';
 
 export default class App extends Component {
   constructor() {
@@ -13,6 +13,7 @@ export default class App extends Component {
     this.state = {
       searchValue: '',
       isLogin: false,
+      userNickName: '',
     };
 
     this.searchClick = this.searchClick.bind(this);
@@ -29,12 +30,12 @@ export default class App extends Component {
     }
   }
 
-  loginHandle() {
+  loginHandle(userNickName) {
     const { isLogin } = this.state;
     if (!isLogin) {
-      this.setState({ isLogin: true });
+      this.setState({ isLogin: true, userNickName });
     } else {
-      this.setState({ isLogin: false });
+      this.setState({ isLogin: false, userNickName: '' });
     }
   }
 
@@ -47,7 +48,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { searchValue, isLogin } = this.state;
+    const { searchValue, isLogin, userNickName } = this.state;
 
     return (
       <div className="app">
@@ -61,10 +62,10 @@ export default class App extends Component {
                 isLogin={isLogin}
                 loginHandle={this.loginHandle}
                 homeBtnHandle={this.homeBtnHandle}
+                userNickName={userNickName}
               />
             )}
           />
-          {/* <Route path="bucket/detail/:id" render={() => <BucketDetails />} /> */}
           <Route
             exact
             path="/SearchResult"
@@ -75,30 +76,37 @@ export default class App extends Component {
                 isLogin={isLogin}
                 homeBtnHandle={this.homeBtnHandle}
                 loginHandle={this.loginHandle}
+                userNickName={userNickName}
               />
             )}
           />
           <Route
             exact
-            path="/"
-            render={() => {
-              if (searchValue !== '') {
-                return <Redirect to="/SearchResult" />;
-              }
-              return <Redirect to="/Home" />;
-            }}
+            path="/SignUp"
+            render={() => <SignUpPage loginHandle={this.loginHandle} />}
           />
           <Route
+            exact
             path="/bucket/detail/:id"
             render={() => <BucketDetailPage isLogin={isLogin} />}
           />
           <Route
+            exact
             path="/mypage"
             render={() => {
               // if (isLogin) {
               return <MyPage isLogin={isLogin} />;
               // }
               // return <Redirect to="/Home" />;
+            }}
+          />
+          <Route
+            path="/"
+            render={() => {
+              if (searchValue !== '') {
+                return <Redirect to="/SearchResult" />;
+              }
+              return <Redirect to="/Home" />;
             }}
           />
         </Switch>
