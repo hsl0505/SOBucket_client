@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
 import LoginModalDiv from './Login/LoginModalDiv';
@@ -8,7 +9,14 @@ import LoginModalDiv from './Login/LoginModalDiv';
 const { Header, Content, Footer } = Layout;
 
 function Page(props) {
-  const { history, crumbMenu, children, isLogin, isSignUpPage } = props;
+  const {
+    history,
+    crumbMenu,
+    children,
+    isLogin,
+    isSignUpPage,
+    loginHandle,
+  } = props;
 
   return (
     <Layout style={{ minHeight: '-webkit-fill-available' }}>
@@ -27,7 +35,7 @@ function Page(props) {
             <Menu.Item key="2">Log Out</Menu.Item>
           ) : (
             <Menu.Item key="2">
-              <LoginModalDiv />
+              <LoginModalDiv loginHandle={loginHandle} />
             </Menu.Item>
           )}
           <Menu.Item
@@ -57,5 +65,13 @@ function Page(props) {
     </Layout>
   );
 }
+
+Page.defaultProps = {
+  loginHandle: () => {},
+};
+
+Page.propTypes = {
+  loginHandle: PropTypes.func,
+};
 
 export default withRouter(Page);
