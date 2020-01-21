@@ -14,7 +14,7 @@ export default class Like extends Component {
     this.likeHandler = this.likeHandler.bind(this);
   }
 
-  componentWillUnmount() {
+  componentDidUpdate() {
     const { isLike, clickLike } = this.state;
     const { bucketId } = this.props;
     if (clickLike) {
@@ -25,9 +25,7 @@ export default class Like extends Component {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-      })
-        .then(res => res.json())
-        .then(() => console.log('ok'));
+      }).then(() => console.log('ok'));
     }
   }
 
