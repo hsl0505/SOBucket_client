@@ -1,8 +1,10 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Modal, Form, Input } from 'antd';
 
-export default class LoginModal extends React.Component {
+class LoginModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +26,7 @@ export default class LoginModal extends React.Component {
   handleSubmitClick(e) {
     console.log(e);
     this.setState({ isValidating: 'validating' });
-    const { hideModal } = this.props;
+    const { hideModal, loginHandle, history } = this.props;
     const { emailValue, passwordValue } = this.state;
     console.log({
       email: emailValue,
@@ -50,6 +52,9 @@ export default class LoginModal extends React.Component {
             isValidating: 'success',
           });
           hideModal();
+          localStorage.setItem('isLogin', 'true');
+          loginHandle();
+          history.replace('/');
         } else {
           this.setState({
             errorMessage: '실패했습니다',
@@ -107,12 +112,16 @@ LoginModal.defaultProps = {
   visible: false,
   hideModal: () => {},
   handleCancel: () => {},
+  loginHandle: () => {},
+  history: '',
 };
 
 LoginModal.propTypes = {
   visible: PropTypes.bool,
   hideModal: PropTypes.func,
   handleCancel: PropTypes.func,
+  loginHandle: PropTypes.func,
+  history: PropTypes.any,
 };
 
-// export default LoginModal;
+export default withRouter(LoginModal);
