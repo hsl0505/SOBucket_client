@@ -12,6 +12,7 @@
 @import './Home/GetBucket.css';
 @import './SearchResult/SearchResult.css';
 @import './Details/BucketInformations.css';
+@import './Details/BucketReview.css';
 
 * {
   box-sizing: border-box;
