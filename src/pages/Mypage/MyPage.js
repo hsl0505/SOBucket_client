@@ -39,7 +39,11 @@ export default class MyPage extends Component {
       .then(res => res.json())
       .then(result => {
         console.log(result);
-        this.setState({ isLoaded: true, bucketList: result.bucketlists });
+        this.setState({
+          isLoaded: true,
+          bucketList: result.bucketlists,
+          chosenBucket: result.bucketlists[0],
+        });
       });
   }
 
