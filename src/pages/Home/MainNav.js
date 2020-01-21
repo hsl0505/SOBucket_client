@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import LoginModalButton from '../Login/LoginModalButton';
 
 function MainNav(props) {
-  const { isLogin, loginHandle, history } = props;
+  const { isLogin, loginHandle, history, homeBtnHandle } = props;
 
   function logoutHandle() {
     fetch('http://127.0.0.1:3001/user/logout', {
@@ -25,9 +25,18 @@ function MainNav(props) {
   if (!isLogin) {
     return (
       <div className="mainNav">
-        <Button className="mainNav_homeBtn" type="primary" size="large">
+        <Button
+          className="mainNav_homeBtn"
+          type="primary"
+          size="large"
+          onClick={() => {
+            homeBtnHandle();
+            history.replace('/');
+          }}
+        >
           SO Bucket
         </Button>
+
         <LoginModalButton loginHandle={loginHandle} />
         <Button className="mainNav_signupBtn" type="primary" size="large">
           Sign Up
@@ -37,9 +46,18 @@ function MainNav(props) {
   }
   return (
     <div className="mainNav">
-      <Button className="mainNav_homeBtn" type="primary" size="large">
+      <Button
+        className="mainNav_homeBtn"
+        type="primary"
+        size="large"
+        onClick={() => {
+          homeBtnHandle();
+          history.replace('/');
+        }}
+      >
         SO Bucket
       </Button>
+
       <Button className="mainNav_mypageBtn" type="primary" size="large">
         My Page
       </Button>
@@ -59,12 +77,14 @@ MainNav.defaultProps = {
   isLogin: false,
   loginHandle: () => {},
   history: '',
+  homeBtnHandle: () => {},
 };
 
 MainNav.propTypes = {
   isLogin: PropTypes.bool,
   loginHandle: PropTypes.func,
   history: PropTypes.any,
+  homeBtnHandle: PropTypes.func,
 };
 
 export default withRouter(MainNav);
