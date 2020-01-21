@@ -4,7 +4,7 @@ import MainSearch from './MainSearch';
 import MainNav from './MainNav';
 
 export default function MainTop(props) {
-  const { isLogin, searchClick, loginHandle } = props;
+  const { isLogin, searchClick, loginHandle, homeBtnHandle } = props;
   return (
     <div className="mainTop">
       <div className="mainTop_SnN">
@@ -13,6 +13,7 @@ export default function MainTop(props) {
           isLogin={isLogin}
           className="mainNav"
           loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
       </div>
       <div className="mainImg">img</div>
@@ -24,10 +25,12 @@ MainTop.defaultProps = {
   isLogin: false,
   searchClick: () => {},
   loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 MainTop.propTypes = {
   isLogin: PropTypes.bool,
   searchClick: PropTypes.func,
   loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };
