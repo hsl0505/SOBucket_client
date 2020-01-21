@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Home from './pages/Home/Home';
 import SearchResult from './pages/SearchResult/SearchResult';
 import BucketDetailPage from './pages/Details/BucketDetailPage';
-import SignUpPage from './pages/SignUp/SignUpPage';
+// import SignUpPage from './pages/SignUp/SignUpPage';
 import MyPage from './pages/Mypage/MyPage';
 
 export default class App extends Component {
@@ -88,7 +88,6 @@ export default class App extends Component {
               return <Redirect to="/Home" />;
             }}
           />
-          <Route path="/signup" render={() => <SignUpPage />} />
           <Route
             path="/bucket/detail/:id"
             render={() => <BucketDetailPage isLogin={isLogin} />}
