@@ -40,3 +40,24 @@
   max-width: 100%;
   border-radius: 5%;
 }
+.buttons {
+  margin: 4% 0 4% 0;
+  overflow: hidden;
+}
+.likebtn,
+.forkbtn,
+.finishbtn,
+.updatebtn {
+  float: left;
+  width: 24%;
+  display: flex;
+  padding: 5px 0 5px 0;
+}
+.getBucketBtn {
+  display: flex;
+}
+.btnSpan {
+  float: left;
+  font-size: 24px;
+  margin: 0 5px 0 5px;
+}

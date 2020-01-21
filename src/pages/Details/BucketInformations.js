@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -8,7 +8,14 @@ import testimg from '../../img/test_img.jpg';
 const { Countdown } = Statistic;
 
 export default function BucketInformations(props) {
-  const { user_id, expectedDate, content, image } = props;
+  const {
+    user_id,
+    expectedDate,
+    content,
+    image,
+    likeButton,
+    forkButton,
+  } = props;
 
   const dateFormat = 'YYYY-MM-DD';
   const timeFormat = 'HH:mm:ss';
@@ -41,14 +48,39 @@ export default function BucketInformations(props) {
       <div className="bucketInfoContent">
         <div className="content">{content}</div>
         <div className="image">
-          {image ? (
+          {/* {image ? (
             <img src={image} alt="pidimg" />
-          ) : (
-            <img src={testimg} alt="pidimg" />
-          )}
+          ) : ( */}
+          <img src={testimg} alt="pidimg" />
+          {/* )} */}
         </div>
       </div>
-      <div className="userId">{user_id}</div>
+      <div className="buttons">
+        <div className="likebtn">
+          <div className="center">
+            <span className="btnSpan">좋아요</span>
+            {likeButton}
+          </div>
+        </div>
+        <div className="forkbtn">
+          <div className="center">
+            <span className="btnSpan">퍼가기</span>
+            {forkButton}
+          </div>
+        </div>
+        <div className="finishbtn">
+          <div className="center">
+            <span className="btnSpan">완료</span>
+            <button>완료</button>
+          </div>
+        </div>
+        <div className="updatebtn">
+          <div className="center">
+            <span className="btnSpan">수정</span>
+            <button>수정</button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
