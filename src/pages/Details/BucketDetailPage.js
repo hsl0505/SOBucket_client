@@ -30,7 +30,7 @@ class BucketDetailPage extends Component {
     if (isLoaded) {
       return (
         <Page crumbMenu={['Home', 'Pid', id]} isLogin={isLogin}>
-          <BucketDetails {...bucketData} />
+          <BucketDetails {...bucketData} isLogin={isLogin} />
         </Page>
       );
     }

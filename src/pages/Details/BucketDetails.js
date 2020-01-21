@@ -24,7 +24,13 @@ export default function BucketDetails(props) {
   } = props;
 
   const likeButton = (
-    <Like likeCount={likeCount} isLogin={isLogin} bucketId={id} key={1} />
+    <Like
+      likeCount={likeCount}
+      isLogin={isLogin}
+      bucketId={id}
+      mylike={false}
+      key={1}
+    />
   );
 
   const forkButton = (

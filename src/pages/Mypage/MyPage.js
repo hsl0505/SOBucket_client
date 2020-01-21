@@ -1,104 +1,124 @@
 /* eslint-disable */
 import React, { Component } from 'react';
+import { Layout, Menu, Icon, Skeleton } from 'antd';
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Page from '../page';
+import BucketDetails from '../Details/BucketDetails';
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
+const { Content, Sider } = Layout;
 
 export default class MyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
+      isLoaded: false,
+      bucketList: [],
+      chosenBucket: {},
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.chooseBucket = this.chooseBucket.bind(this);
   }
 
-  handleClick(text) {
-    this.setState({
-      content: text,
-    });
+  chooseBucket(id) {
+    const { bucketList } = this.state;
+    for (let i = 0; i < bucketList.length; i++) {
+      if (id === bucketList[i].id) {
+        this.setState({
+          chosenBucket: bucketList[i],
+        });
+        break;
+      }
+    }
+  }
+
+  componentDidMount() {
+    fetch(`http://127.0.0.1:3001/buckets/mypage`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        this.setState({ isLoaded: true, bucketList: result.bucketlists });
+      });
   }
 
   render() {
-    const { content } = this.state;
-    const { handleClick } = this;
+    const { isLoaded, bucketList, chosenBucket } = this.state;
+    const { chooseBucket } = this;
+    if (!isLoaded) {
+      return (
+        <Page crumbMenu={['Home', 'Mypage']} isLogin="true">
+          <Layout style={{ padding: '24px 0', background: '#fff' }}>
+            <Sider width={200} style={{ background: '#fff' }}>
+              <Skeleton />
+            </Sider>
+            <Content style={{ padding: '0 24px', minHeight: 280 }}>
+              <Skeleton />
+            </Content>
+          </Layout>
+        </Page>
+      );
+    }
     return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider>
-          <div className="App-logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <SubMenu
-              key="sub1"
-              title={
-                <span>
-                  <Icon type="unordered-list" />
-                  <span>내 버킷리스트</span>
-                </span>
-              }
+      <Page crumbMenu={['Home', 'Mypage']} isLogin="true">
+        <Layout style={{ padding: '24px 0', background: '#fff' }}>
+          <Sider width={200} style={{ background: '#fff' }}>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              defaultOpenKeys={['sub1']}
+              style={{ height: '100%' }}
             >
-              <Menu.Item
-                key="s2_1"
-                onClick={e => handleClick('애플파이 만들기')}
+              <SubMenu
+                key="sub1"
+                title={
+                  <span>
+                    <Icon type="bars" />내 버킷리스트
+                  </span>
+                }
               >
-                애플파이 만들기
-              </Menu.Item>
-              <Menu.Item key="s2_2">스탠드업 미팅 약속 잡기</Menu.Item>
-              <Menu.Item key="s2_3">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="s2_4">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="s2_5">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="s2_6">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="s2_7">스카이다이빙하기</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={
-                <span>
-                  <Icon type="unordered-list" />
-                  <span>좋아요 표시한 리스트</span>
-                </span>
-              }
-            >
-              <Menu.Item key="s2_1">애플파이 만들기</Menu.Item>
-              <Menu.Item key="s2_2">스탠드업 미팅 약속 잡기</Menu.Item>
-              <Menu.Item key="s2_3">스카이다이빙하기</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub3"
-              title={
-                <span>
-                  <Icon type="unordered-list" />
-                  <span>기타 리스트</span>
-                </span>
-              }
-            >
-              <Menu.Item key="15">애플파이 만들기</Menu.Item>
-              <Menu.Item key="16">스탠드업 미팅 약속 잡기</Menu.Item>
-              <Menu.Item key="17">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="18">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="19">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="20">스카이다이빙하기</Menu.Item>
-              <Menu.Item key="21">스카이다이빙하기</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="22">
-              <Icon type="file" />
-              <span>다운로드하기</span>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 20, background: 'beige' }}>{content}</div>
+                {bucketList.map(el => (
+                  <Menu.Item key={el.id} onClick={() => chooseBucket(el.id)}>
+                    {el.title}
+                  </Menu.Item>
+                ))}
+              </SubMenu>
+              <SubMenu
+                key="sub2"
+                title={
+                  <span>
+                    <Icon type="bars" />
+                    좋아요 표시한 리스트
+                  </span>
+                }
+              >
+                <Menu.Item key="5">option5</Menu.Item>
+                <Menu.Item key="6">option6</Menu.Item>
+                <Menu.Item key="7">option7</Menu.Item>
+                <Menu.Item key="8">option8</Menu.Item>
+              </SubMenu>
+              <SubMenu
+                key="sub3"
+                title={
+                  <span>
+                    <Icon type="bars" />
+                    기타 리스트
+                  </span>
+                }
+              >
+                <Menu.Item key="9">option9</Menu.Item>
+                <Menu.Item key="10">option10</Menu.Item>
+                <Menu.Item key="11">option11</Menu.Item>
+                <Menu.Item key="12">option12</Menu.Item>
+              </SubMenu>
+            </Menu>
+          </Sider>
+          <Content style={{ padding: '0 24px', minHeight: 280 }}>
+            <BucketDetails {...chosenBucket} />
           </Content>
-          <Footer></Footer>
         </Layout>
-      </Layout>
+      </Page>
     );
   }
 }

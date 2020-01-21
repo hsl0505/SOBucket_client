@@ -11,7 +11,7 @@ function Page(props) {
   const { history, crumbMenu, children, isLogin, isSignUpPage } = props;
 
   return (
-    <Layout>
+    <Layout style={{ minHeight: '-webkit-fill-available' }}>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <div className="logo" />
         <Menu
