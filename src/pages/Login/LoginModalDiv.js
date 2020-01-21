@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginModal from './LoginModal';
 
-export default class LoginModalButton extends React.Component {
+export default class LoginModalDiv extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +37,7 @@ export default class LoginModalButton extends React.Component {
     /* eslint-disable */
     return (
       <div>
-        <span onClick={showModal}>Log In</span>
+        <div onClick={showModal}>Log In</div>
         <LoginModal
           hideModal={hideModal}
           visible={visible}

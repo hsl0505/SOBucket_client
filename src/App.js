@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 import Home from './pages/Home/Home';
 import SearchResult from './pages/SearchResult/SearchResult';
-// import BucketDetails from './pages/Details/BucketDetails';
+import BucketDetailPage from './pages/Details/BucketDetailPage';
+// import SignUpPage from './pages/SignUp/SignUpPage';
+import MyPage from './pages/Mypage/MyPage';
 
 export default class App extends Component {
   constructor() {
@@ -77,12 +79,26 @@ export default class App extends Component {
             )}
           />
           <Route
+            exact
             path="/"
             render={() => {
               if (searchValue !== '') {
                 return <Redirect to="/SearchResult" />;
               }
               return <Redirect to="/Home" />;
+            }}
+          />
+          <Route
+            path="/bucket/detail/:id"
+            render={() => <BucketDetailPage isLogin={isLogin} />}
+          />
+          <Route
+            path="/mypage"
+            render={() => {
+              // if (isLogin) {
+              return <MyPage isLogin={isLogin} />;
+              // }
+              // return <Redirect to="/Home" />;
             }}
           />
         </Switch>

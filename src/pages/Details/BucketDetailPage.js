@@ -25,10 +25,11 @@ class BucketDetailPage extends Component {
 
   render() {
     const id = this.props.match.params.id;
+    const { isLogin } = this.props;
     const { isLoaded, bucketData } = this.state;
     if (isLoaded) {
       return (
-        <Page crumbMenu={['Home', 'Pid', id]}>
+        <Page crumbMenu={['Home', 'Pid', id]} isLogin={isLogin}>
           <BucketDetails {...bucketData} />
         </Page>
       );
