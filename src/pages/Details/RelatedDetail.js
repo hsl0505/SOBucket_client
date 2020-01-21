@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
 
 export default function RelatedDetail(props) {

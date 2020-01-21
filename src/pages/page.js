@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Button } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
 import LoginModalSpan from './Login/LoginModalSpan';
 

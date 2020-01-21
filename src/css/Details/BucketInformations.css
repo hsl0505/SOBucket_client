@@ -1,0 +1,42 @@
+.ant-page-header-heading {
+  padding: 10px 0 10px 0;
+}
+.ant-page-header-heading-title {
+  font-size: 28px;
+}
+.bucketInfoDate {
+  overflow: hidden;
+}
+.expectedDate,
+.countDown {
+  width: min-content;
+  float: left;
+  text-align: center;
+  padding: 0 25px 0 25px;
+}
+.center {
+  width: max-content;
+  margin: 0 auto;
+}
+.content,
+.image {
+  width: 45%;
+  margin: 1%;
+}
+.bucketInfoContent {
+  overflow: hidden;
+  height: min-content;
+}
+.content {
+  float: left;
+  padding: 5% 0 0 5%;
+  font-size: 22px;
+}
+.image {
+  float: right;
+  padding-top: 3%;
+}
+.image img {
+  max-width: 100%;
+  border-radius: 5%;
+}
