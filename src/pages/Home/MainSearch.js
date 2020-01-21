@@ -14,7 +14,7 @@ function MainSearch(props) {
     <div className="mainSearch">
       <Search
         className="mainSearch_search"
-        placeholder="검색어를 입력하세요"
+        placeholder="찾고 싶은 Bucket 제목을 입력하세요"
         enterButton
         size="large"
         onSearch={value => {
