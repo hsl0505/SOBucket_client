@@ -13,3 +13,12 @@
 .mainNav_homeBtn {
   margin-right: 30px;
 }
+
+.mainNav_user {
+  display: flex;
+  margin-right: 30px;
+}
+
+.mainNav_user_avatar {
+  margin-right: 15px;
+}
