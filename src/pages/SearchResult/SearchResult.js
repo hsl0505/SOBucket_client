@@ -10,19 +10,6 @@ export default class SearchResult extends Component {
     super(props);
     this.state = {
       searchBuckets: [],
-      // fake data
-      // searchBuckets: [
-      //   { id: 0, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 1, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 2, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 3, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 4, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 5, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 6, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 7, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 8, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 9, userName: '임현성', title: 'test', like: 5, mylike: false },
-      // ],
       bucketListLoad: true,
     };
   }
@@ -53,6 +40,7 @@ export default class SearchResult extends Component {
       isLogin,
       homeBtnHandle,
       loginHandle,
+      userNickName,
     } = this.props;
     const { searchBuckets, bucketListLoad } = this.state;
     let arrMap;
@@ -77,6 +65,7 @@ export default class SearchResult extends Component {
             isLogin={isLogin}
             homeBtnHandle={homeBtnHandle}
             loginHandle={loginHandle}
+            userNickName={userNickName}
           />
         </div>
         <h3 className="searchResult_title">{`${searchValue} 에 대한 buckets !`}</h3>
@@ -98,6 +87,7 @@ SearchResult.defaultProps = {
   isLogin: false,
   homeBtnHandle: () => {},
   loginHandle: () => {},
+  userNickName: '',
 };
 
 SearchResult.propTypes = {
@@ -106,4 +96,5 @@ SearchResult.propTypes = {
   isLogin: PropTypes.bool,
   homeBtnHandle: PropTypes.func,
   loginHandle: PropTypes.func,
+  userNickName: PropTypes.string,
 };

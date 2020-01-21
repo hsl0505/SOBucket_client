@@ -53,7 +53,8 @@ class LoginModal extends React.Component {
           });
           hideModal();
           localStorage.setItem('isLogin', 'true');
-          loginHandle();
+          localStorage.setItem('userNickName', `${data.userNickName}`);
+          loginHandle(data.userNickName);
           history.replace('/');
         } else {
           this.setState({

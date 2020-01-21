@@ -14,7 +14,7 @@ export default function TodayBucketList(props) {
   ));
   return (
     <div className="todayBucketlists">
-      <h2 className="todayBucketsTitle">오늘의 버킷 리스트</h2>
+      <h1 className="todayBucketsTitle">Best Buckets</h1>
       <div className="todayBucketlist">{arrMap}</div>
     </div>
   );

@@ -1,15 +1,19 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 // import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
 import Like from './Like';
 import GetBucket from './GetBucket';
 import testimg from '../../img/test_img.jpg';
 
-export default function Bucket(props) {
+function Bucket(props) {
   const { Meta } = Card;
-  const { bucket, bucketListLoad, isLogin } = props;
-
+  const { bucket, bucketListLoad, isLogin, history } = props;
+  const { id } = bucket;
   return (
     <div className="bucket">
       <Card
@@ -19,7 +23,18 @@ export default function Bucket(props) {
           bucketListLoad ? (
             <div>example</div>
           ) : (
-            <img className="testimg" alt="example" src={testimg} />
+            <img
+              style={{
+                borderTopRightRadius: '40px',
+                borderTopLeftRadius: '40px',
+              }}
+              className="testimg"
+              alt="example"
+              src={testimg}
+              onClick={() => {
+                history.push(`/bucket/detail/${id}`);
+              }}
+            />
           )
         }
       >
@@ -48,6 +63,7 @@ Bucket.defaultProps = {
   bucket: {},
   bucketListLoad: true,
   isLogin: false,
+  history: '',
 };
 
 Bucket.propTypes = {
@@ -60,4 +76,7 @@ Bucket.propTypes = {
   }),
   bucketListLoad: PropTypes.bool,
   isLogin: PropTypes.bool,
+  history: PropTypes.any,
 };
+
+export default withRouter(Bucket);

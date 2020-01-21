@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import LoginModalButton from '../Login/LoginModalButton';
 
 function MainNav(props) {
-  const { isLogin, loginHandle, history, homeBtnHandle } = props;
+  const { isLogin, loginHandle, history, homeBtnHandle, userNickName } = props;
 
   function logoutHandle() {
     fetch('http://127.0.0.1:3001/user/logout', {
@@ -17,6 +17,7 @@ function MainNav(props) {
     }).then(() => {
       console.log('bye');
       localStorage.removeItem('isLogin');
+      localStorage.removeItem('userNickName');
       loginHandle();
       history.replace('/');
     });
@@ -25,6 +26,10 @@ function MainNav(props) {
   if (!isLogin) {
     return (
       <div className="mainNav">
+        <div className="mainNav_user">
+          <div className="mainNav_user_avatar">{userNickName}</div>
+          <div className="mainNav_user_NickName">{userNickName}</div>
+        </div>
         <Button
           className="mainNav_homeBtn"
           type="primary"
@@ -38,7 +43,14 @@ function MainNav(props) {
         </Button>
 
         <LoginModalButton loginHandle={loginHandle} />
-        <Button className="mainNav_signupBtn" type="primary" size="large">
+        <Button
+          className="mainNav_signupBtn"
+          type="primary"
+          size="large"
+          onClick={() => {
+            history.replace('/SignUp');
+          }}
+        >
           Sign Up
         </Button>
       </div>
@@ -46,6 +58,10 @@ function MainNav(props) {
   }
   return (
     <div className="mainNav">
+      <div className="mainNav_user">
+        <div className="mainNav_user_avatar">avatar</div>
+        <div className="mainNav_user_NickName">{userNickName}</div>
+      </div>
       <Button
         className="mainNav_homeBtn"
         type="primary"
@@ -58,7 +74,14 @@ function MainNav(props) {
         SO Bucket
       </Button>
 
-      <Button className="mainNav_mypageBtn" type="primary" size="large">
+      <Button
+        className="mainNav_mypageBtn"
+        type="primary"
+        size="large"
+        onClick={() => {
+          history.replace('/mypage');
+        }}
+      >
         My Page
       </Button>
       <Button
@@ -78,6 +101,7 @@ MainNav.defaultProps = {
   loginHandle: () => {},
   history: '',
   homeBtnHandle: () => {},
+  userNickName: '',
 };
 
 MainNav.propTypes = {
@@ -85,6 +109,7 @@ MainNav.propTypes = {
   loginHandle: PropTypes.func,
   history: PropTypes.any,
   homeBtnHandle: PropTypes.func,
+  userNickName: PropTypes.string,
 };
 
 export default withRouter(MainNav);

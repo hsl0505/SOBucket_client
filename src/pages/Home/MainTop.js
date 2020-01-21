@@ -4,7 +4,13 @@ import MainSearch from './MainSearch';
 import MainNav from './MainNav';
 
 export default function MainTop(props) {
-  const { isLogin, searchClick, loginHandle, homeBtnHandle } = props;
+  const {
+    isLogin,
+    searchClick,
+    loginHandle,
+    homeBtnHandle,
+    userNickName,
+  } = props;
   return (
     <div className="mainTop">
       <div className="mainTop_SnN">
@@ -14,9 +20,13 @@ export default function MainTop(props) {
           className="mainNav"
           loginHandle={loginHandle}
           homeBtnHandle={homeBtnHandle}
+          userNickName={userNickName}
         />
       </div>
-      <div className="mainImg">img</div>
+      <div className="mainImg">
+        SO BUCKET
+        <div className="mainImg_text">Spread Out BUCKETS!</div>
+      </div>
     </div>
   );
 }
@@ -26,6 +36,7 @@ MainTop.defaultProps = {
   searchClick: () => {},
   loginHandle: () => {},
   homeBtnHandle: () => {},
+  userNickName: '',
 };
 
 MainTop.propTypes = {
@@ -33,4 +44,5 @@ MainTop.propTypes = {
   searchClick: PropTypes.func,
   loginHandle: PropTypes.func,
   homeBtnHandle: PropTypes.func,
+  userNickName: PropTypes.string,
 };

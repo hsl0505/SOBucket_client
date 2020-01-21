@@ -10,26 +10,8 @@ export default class Home extends Component {
     this.state = {
       bucketList: [],
       bucketListLoad: true, // true는 로딩상태
-      // fake data
-      // bucketList: [
-      //   { id: 0, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 1, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 2, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 3, userName: '임현성', title: 'test', like: 5, mylike: true },
-      //   { id: 4, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 5, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 6, userName: '임현성', title: 'test', like: 5, mylike: false },
-      //   { id: 7, userName: '임현성', title: 'test', like: 5, mylike: false },
-      // ],
       todayBucketList: [],
       todayBucketListLoad: true, // true는 로딩상태
-      // fake data
-      // todayBucketList: [
-      //   { id: 0, userName: '임현성', title: 'test', like: 5 },
-      //   { id: 1, userName: '임현성', title: 'test', like: 10 },
-      //   { id: 2, userName: '임현성', title: 'test', like: 2 },
-      //   { id: 3, userName: '임현성', title: 'test', like: 8 },
-      // ],
     };
   }
 
@@ -63,7 +45,13 @@ export default class Home extends Component {
       todayBucketListLoad,
     } = this.state;
 
-    const { searchClick, loginHandle, isLogin, homeBtnHandle } = this.props;
+    const {
+      searchClick,
+      loginHandle,
+      isLogin,
+      homeBtnHandle,
+      userNickName,
+    } = this.props;
 
     return (
       <div className="home">
@@ -72,6 +60,7 @@ export default class Home extends Component {
           searchClick={searchClick}
           loginHandle={loginHandle}
           homeBtnHandle={homeBtnHandle}
+          userNickName={userNickName}
         />
         <BucketList
           bucketList={bucketList}
@@ -93,6 +82,7 @@ Home.defaultProps = {
   isLogin: false,
   loginHandle: () => {},
   homeBtnHandle: () => {},
+  userNickName: '',
 };
 
 Home.propTypes = {
@@ -100,4 +90,5 @@ Home.propTypes = {
   isLogin: PropTypes.bool,
   loginHandle: PropTypes.func,
   homeBtnHandle: PropTypes.func,
+  userNickName: PropTypes.string,
 };

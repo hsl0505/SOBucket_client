@@ -1,8 +1,10 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import Bucket from './Bucket';
 
-export default function BucketList(props) {
+function BucketList(props) {
   const { bucketList, bucketListLoad, isLogin } = props;
   const arrMap = bucketList.map(ele => (
     <Bucket
@@ -15,7 +17,7 @@ export default function BucketList(props) {
 
   return (
     <div className="bucketlists">
-      <h2 className="bucketlistTitle">Buckets !</h2>
+      <h1 className="bucketlistTitle">Here Buckets !</h1>
       <div className="bucketlist">{arrMap}</div>
     </div>
   );
@@ -32,3 +34,5 @@ BucketList.propTypes = {
   bucketListLoad: PropTypes.bool,
   isLogin: PropTypes.bool,
 };
+
+export default withRouter(BucketList);
