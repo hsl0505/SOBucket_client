@@ -1,14 +1,19 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 // import 'antd/dist/antd.css';
 import { Card, Skeleton } from 'antd';
 import Like from './Like';
 import GetBucket from './GetBucket';
 import testimg from '../../img/test_img.jpg';
 
-export default function TodayBucket(props) {
+function TodayBucket(props) {
   const { Meta } = Card;
-  const { todayBucket, todayBucketListLoad, isLogin } = props;
+  const { todayBucket, todayBucketListLoad, isLogin, history } = props;
+  const { id } = todayBucket;
 
   return (
     <div className="todaybucket">
@@ -19,7 +24,18 @@ export default function TodayBucket(props) {
           todayBucketListLoad ? (
             <div>example</div>
           ) : (
-            <img className="testimg" alt="example" src={testimg} />
+            <img
+              style={{
+                borderTopRightRadius: '40px',
+                borderTopLeftRadius: '40px',
+              }}
+              className="testimg"
+              alt="example"
+              src={testimg}
+              onClick={() => {
+                history.push(`/bucket/detail/${id}`);
+              }}
+            />
           )
         }
       >
@@ -48,6 +64,7 @@ TodayBucket.defaultProps = {
   todayBucket: {},
   todayBucketListLoad: true,
   isLogin: false,
+  history: '',
 };
 
 TodayBucket.propTypes = {
@@ -60,4 +77,7 @@ TodayBucket.propTypes = {
   }),
   todayBucketListLoad: PropTypes.bool,
   isLogin: PropTypes.bool,
+  history: PropTypes.any,
 };
+
+export default withRouter(TodayBucket);
