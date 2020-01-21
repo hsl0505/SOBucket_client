@@ -18,7 +18,7 @@ export default class Like extends Component {
     const { isLike, clickLike } = this.state;
     const { bucketId } = this.props;
     if (clickLike) {
-      fetch('http://localhost:3001/buckets/like', {
+      fetch('http://127.0.0.1:3001/buckets/like', {
         method: 'POST',
         body: JSON.stringify({ isLike, bucketId }),
         headers: {
