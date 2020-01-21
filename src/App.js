@@ -15,6 +15,7 @@ export default class App extends Component {
 
     this.searchClick = this.searchClick.bind(this);
     this.loginHandle = this.loginHandle.bind(this);
+    this.homeBtnHandle = this.homeBtnHandle.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,10 @@ export default class App extends Component {
     this.setState({ searchValue: value });
   }
 
+  homeBtnHandle() {
+    this.setState({ searchValue: '' });
+  }
+
   render() {
     const { searchValue, isLogin } = this.state;
 
@@ -53,6 +58,7 @@ export default class App extends Component {
                 searchClick={this.searchClick}
                 isLogin={isLogin}
                 loginHandle={this.loginHandle}
+                homeBtnHandle={this.homeBtnHandle}
               />
             )}
           />
@@ -65,6 +71,8 @@ export default class App extends Component {
                 searchValue={searchValue}
                 searchClick={this.searchClick}
                 isLogin={isLogin}
+                homeBtnHandle={this.homeBtnHandle}
+                loginHandle={this.loginHandle}
               />
             )}
           />
