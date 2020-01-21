@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input, Form } from 'antd';
 
 import Page from '../page';
@@ -88,8 +89,13 @@ export default class SignUpPage extends React.Component {
       isValidating,
       errorMessage,
     } = this.state;
+    const { loginHandle } = this.props;
     return (
-      <Page crumbMenu={['Home', 'Signup']} isSignUpPage="true">
+      <Page
+        crumbMenu={['Home', 'Signup']}
+        isSignUpPage="true"
+        loginHandle={loginHandle}
+      >
         <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
           <Form>
             <Form.Item label="Email" validateStatus={isValidating} hasFeedback>
@@ -173,3 +179,11 @@ export default class SignUpPage extends React.Component {
     );
   }
 }
+
+SignUpPage.defaultProps = {
+  loginHandle: () => {},
+};
+
+SignUpPage.propTypes = {
+  loginHandle: PropTypes.func,
+};
