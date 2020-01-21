@@ -89,7 +89,7 @@ export default class SignUpPage extends React.Component {
       errorMessage,
     } = this.state;
     return (
-      <Page crumbMenu={['Home', 'Signup']} defaultSelect={['3']}>
+      <Page crumbMenu={['Home', 'Signup']} isSignUpPage="true">
         <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
           <Form>
             <Form.Item label="Email" validateStatus={isValidating} hasFeedback>
