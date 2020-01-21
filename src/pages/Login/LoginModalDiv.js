@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoginModal from './LoginModal';
 
 export default class LoginModalDiv extends React.Component {
@@ -34,6 +35,7 @@ export default class LoginModalDiv extends React.Component {
   render() {
     const { handleCancel, showModal, hideModal } = this;
     const { visible } = this.state;
+    const { loginHandle } = this.props;
     /* eslint-disable */
     return (
       <div>
@@ -42,8 +44,17 @@ export default class LoginModalDiv extends React.Component {
           hideModal={hideModal}
           visible={visible}
           handleCancel={handleCancel}
+          loginHandle={loginHandle}
         />
       </div>
     );
   }
 }
+
+LoginModalDiv.defaultProps = {
+  loginHandle: () => {},
+};
+
+LoginModalDiv.propTypes = {
+  loginHandle: PropTypes.func,
+};
