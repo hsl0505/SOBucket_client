@@ -47,7 +47,13 @@ export default class SearchResult extends Component {
   }
 
   render() {
-    const { searchValue, searchClick, isLogin } = this.props;
+    const {
+      searchValue,
+      searchClick,
+      isLogin,
+      homeBtnHandle,
+      loginHandle,
+    } = this.props;
     const { searchBuckets, bucketListLoad } = this.state;
     let arrMap;
     if (searchBuckets === null) {
@@ -67,7 +73,11 @@ export default class SearchResult extends Component {
       <div className="searchResult">
         <div className="searchResult_top">
           <MainSearch searchClick={searchClick} />
-          <MainNav isLogin={isLogin} />
+          <MainNav
+            isLogin={isLogin}
+            homeBtnHandle={homeBtnHandle}
+            loginHandle={loginHandle}
+          />
         </div>
         <h3 className="searchResult_title">{`${searchValue} 에 대한 buckets !`}</h3>
         <div className="searchBucketList">
@@ -86,10 +96,14 @@ SearchResult.defaultProps = {
   searchValue: '',
   searchClick: () => {},
   isLogin: false,
+  homeBtnHandle: () => {},
+  loginHandle: () => {},
 };
 
 SearchResult.propTypes = {
   searchValue: PropTypes.string,
   searchClick: PropTypes.func,
   isLogin: PropTypes.bool,
+  homeBtnHandle: PropTypes.func,
+  loginHandle: PropTypes.func,
 };

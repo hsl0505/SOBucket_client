@@ -63,7 +63,7 @@ export default class Home extends Component {
       todayBucketListLoad,
     } = this.state;
 
-    const { searchClick, loginHandle, isLogin } = this.props;
+    const { searchClick, loginHandle, isLogin, homeBtnHandle } = this.props;
 
     return (
       <div className="home">
@@ -71,6 +71,7 @@ export default class Home extends Component {
           isLogin={isLogin}
           searchClick={searchClick}
           loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
         <BucketList
           bucketList={bucketList}
@@ -91,10 +92,12 @@ Home.defaultProps = {
   searchClick: () => {},
   isLogin: false,
   loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 Home.propTypes = {
   searchClick: PropTypes.func,
   isLogin: PropTypes.bool,
   loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };
