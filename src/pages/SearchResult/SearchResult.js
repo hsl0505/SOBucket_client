@@ -29,7 +29,7 @@ export default class SearchResult extends Component {
 
   componentDidMount() {
     const { searchValue } = this.props;
-    fetch(`http://localhost:3001/buckets/search/?q=${searchValue}`, {
+    fetch(`http://127.0.0.1:3001/buckets/search/?q=${searchValue}`, {
       method: 'GET',
       credentials: 'include',
     })
@@ -67,7 +67,7 @@ export default class SearchResult extends Component {
       <div className="searchResult">
         <div className="searchResult_top">
           <MainSearch searchClick={searchClick} />
-          <MainNav />
+          <MainNav isLogin={isLogin} />
         </div>
         <h3 className="searchResult_title">{`${searchValue} 에 대한 buckets !`}</h3>
         <div className="searchBucketList">
