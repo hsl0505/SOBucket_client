@@ -6,6 +6,7 @@ import SearchResult from './pages/SearchResult/SearchResult';
 import BucketDetailPage from './pages/Details/BucketDetailPage';
 import MyPage from './pages/Mypage/MyPage';
 import SignUpPage from './pages/SignUp/SignUpPage';
+import UserInfo from './pages/UserInfo/UserInfo';
 import BucketWrite from './pages/BucketWrite/BucketWrite';
 
 export default class App extends Component {
@@ -114,6 +115,16 @@ export default class App extends Component {
             }}
           />
           <Route exact path="/create" render={() => <BucketWrite />} />
+          <Route
+            exact
+            path="/userinfo"
+            render={() => (
+              <UserInfo
+                loginHandle={this.loginHandle}
+                homeBtnHandle={this.homeBtnHandle}
+              />
+            )}
+          />
           <Route
             path="/"
             render={() => {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import UserDetails from './UserDetails';
 
@@ -5,27 +6,43 @@ export default class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      username: null,
-      nickname: null,
-      phone: null,
-      createdAt: null,
-      selectedFile: null,
+      email: '3@3',
+      username: '임현성3',
+      userNickName: '현성3',
+      phone: '3-3-3',
+      createdAt: '2020-01-21 00:59:36',
+      selectedFile: '',
     };
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
   }
 
-  //   componentDidMount() {
-  //     fetch('http://localhost:3001/user/info', {
-  //       method: 'GET',
-  //     })
-  //       .then(res => res.json())
-  //       .then(result => {
-  //         this.setState({ result: result });
-  //       });
-  //   }
+  componentDidMount() {
+    fetch('http://localhost:3001/user/info', {
+      method: 'GET',
+    }).then(response => {
+      const reader = response.body.getReader();
+      let charsReceived = 0;
+
+      // read() returns a promise that resolves
+      // when a value has been received
+      reader.read().then(({ done, value }) => {
+        // Result objects contain two properties:
+        // done  - true if the stream has already given you all its data.
+        // value - some data. Always undefined when done is true.
+        if (done) {
+          console.log('Stream complete');
+          para.textContent = value;
+          return;
+        }
+
+        console.log(value);
+        console.log(value.buffer);
+        return value;
+      });
+    });
+  }
 
   //   handleSubmit() {}
 
@@ -56,7 +73,7 @@ export default class UserInfo extends Component {
     const {
       email,
       username,
-      nickname,
+      userNickName,
       phone,
       createdAt,
       selectedFile,
@@ -66,7 +83,7 @@ export default class UserInfo extends Component {
         <UserDetails
           email={email}
           username={username}
-          nickname={nickname}
+          userNickName={userNickName}
           phone={phone}
           createdAt={createdAt}
           selectedFile={selectedFile}

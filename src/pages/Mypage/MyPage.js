@@ -181,6 +181,7 @@ class MyPage extends Component {
               {...chosenBucket}
               isLogin={isLogin}
               likeChangeHandle={this.likeChangeHandle}
+              isMyPage={true}
             />
           </Content>
         </Layout>
