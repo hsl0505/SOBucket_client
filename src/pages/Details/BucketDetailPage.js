@@ -26,7 +26,7 @@ class BucketDetailPage extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    const { isLogin, homeBtnHandle } = this.props;
+    const { isLogin, homeBtnHandle, loginHandle } = this.props;
     const { isLoaded, bucketData } = this.state;
     if (isLoaded) {
       return (
@@ -34,13 +34,18 @@ class BucketDetailPage extends Component {
           crumbMenu={['Home', 'Pid', id]}
           isLogin={isLogin}
           homeBtnHandle={homeBtnHandle}
+          loginHandle={loginHandle}
         >
           <BucketDetails {...bucketData} isLogin={isLogin} />
         </Page>
       );
     }
     return (
-      <Page crumbMenu={['Home', 'Pid', id]} homeBtnHandle={homeBtnHandle}>
+      <Page
+        crumbMenu={['Home', 'Pid', id]}
+        homeBtnHandle={homeBtnHandle}
+        loginHandle={loginHandle}
+      >
         <Skeleton active />
       </Page>
     );
