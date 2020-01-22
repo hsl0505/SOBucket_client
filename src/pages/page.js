@@ -16,6 +16,7 @@ function Page(props) {
     isLogin,
     isSignUpPage,
     loginHandle,
+    homeBtnHandle,
   } = props;
 
   return (
@@ -28,7 +29,13 @@ function Page(props) {
           style={{ lineHeight: '64px' }}
           defaultSelectedKeys={isSignUpPage === 'true' ? ['3'] : []}
         >
-          <Menu.Item key="1" onClick={() => history.push('/Home')}>
+          <Menu.Item
+            key="1"
+            onClick={() => {
+              homeBtnHandle();
+              history.push('/Home');
+            }}
+          >
             Home
           </Menu.Item>
           {isLogin ? (
@@ -68,10 +75,12 @@ function Page(props) {
 
 Page.defaultProps = {
   loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 Page.propTypes = {
   loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };
 
 export default withRouter(Page);
