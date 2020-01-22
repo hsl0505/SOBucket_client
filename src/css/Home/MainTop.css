@@ -7,3 +7,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mainLogo {
+  background-image: url('../../img/logo_sobucket.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 110px;
+  margin-top: -30px;
+}
