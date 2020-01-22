@@ -83,19 +83,31 @@ export default class App extends Component {
           <Route
             exact
             path="/SignUp"
-            render={() => <SignUpPage loginHandle={this.loginHandle} />}
+            render={() => (
+              <SignUpPage
+                loginHandle={this.loginHandle}
+                homeBtnHandle={this.homeBtnHandle}
+              />
+            )}
           />
           <Route
             exact
             path="/bucket/detail/:id"
-            render={() => <BucketDetailPage isLogin={isLogin} />}
+            render={() => (
+              <BucketDetailPage
+                isLogin={isLogin}
+                homeBtnHandle={this.homeBtnHandle}
+              />
+            )}
           />
           <Route
             exact
             path="/mypage"
             render={() => {
               // if (isLogin) {
-              return <MyPage isLogin={isLogin} />;
+              return (
+                <MyPage isLogin={isLogin} homeBtnHandle={this.homeBtnHandle} />
+              );
               // }
               // return <Redirect to="/Home" />;
             }}
