@@ -18,7 +18,7 @@
 
 .mainImg_text {
   font-size: 70px;
-  animation: fadeIn 2s linear 1 forwards;
+  animation: fadeIn 3s linear 1 forwards;
 }
 
 @keyframes fadeIn {

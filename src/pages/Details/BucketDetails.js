@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable camelcase */
 import React from 'react';
 import { PageHeader } from 'antd';
@@ -22,6 +23,7 @@ export default function BucketDetails(props) {
     isLogin,
     mylike,
     isMyPage,
+    likeChangeHandle,
   } = props;
 
   const { userNickName, avatar } = user;
@@ -33,6 +35,7 @@ export default function BucketDetails(props) {
       bucketId={id}
       mylike={mylike}
       key={1}
+      likeChangeHandle={likeChangeHandle}
     />
   );
 
@@ -44,19 +47,27 @@ export default function BucketDetails(props) {
         title,
         image,
         content,
-        userName: userNickName,
         expectedDate,
       }}
     />
   );
+
+  if (id === 0) {
+    return (
+      <div className="mypage_bucketDetail">
+        <div className="mypage_bucketDetail_text">
+          Look around your buckets !
+        </div>
+      </div>
+    );
+  }
 
   return (
     <PageHeader
       ghost={false}
       onBack={() => window.history.back()}
       title={title}
-      subTitle={avatar + userNickName}
-      extra={[likeButton]}
+      subTitle={avatar + ' ' + userNickName}
       style={{
         paddingTop: '10px',
         paddingBottom: '10px',
@@ -99,6 +110,7 @@ BucketDetails.defaultProps = {
   isLogin: false,
   mylike: false,
   isMyPage: false,
+  likeChangeHandle: () => {},
 };
 
 BucketDetails.propTypes = {
@@ -113,4 +125,5 @@ BucketDetails.propTypes = {
   user: PropTypes.objectOf(PropTypes.string),
   mylike: PropTypes.bool,
   isMyPage: PropTypes.bool,
+  likeChangeHandle: PropTypes.func,
 };

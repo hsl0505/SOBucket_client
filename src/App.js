@@ -7,6 +7,7 @@ import BucketDetailPage from './pages/Details/BucketDetailPage';
 import MyPage from './pages/Mypage/MyPage';
 import SignUpPage from './pages/SignUp/SignUpPage';
 import UserInfo from './pages/UserInfo/UserInfo';
+import BucketWrite from './pages/BucketWrite/BucketWrite';
 
 export default class App extends Component {
   constructor() {
@@ -113,6 +114,7 @@ export default class App extends Component {
               // return <Redirect to="/Home" />;
             }}
           />
+          <Route exact path="/create" render={() => <BucketWrite />} />
           <Route
             exact
             path="/userinfo"
