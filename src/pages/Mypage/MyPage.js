@@ -99,7 +99,7 @@ class MyPage extends Component {
   render() {
     const { isLoaded, bucketList, chosenBucket, likeList } = this.state;
     const { chooseBucket, chooseLikeBucket } = this;
-    const { homeBtnHandle, isLogin, history } = this.props;
+    const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
 
     if (!isLoaded) {
       return (
@@ -107,6 +107,7 @@ class MyPage extends Component {
           crumbMenu={['Home', 'Mypage']}
           isLogin="true"
           homeBtnHandle={homeBtnHandle}
+          loginHandle={loginHandle}
         >
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
             <Sider width={200} style={{ background: '#fff' }}>
@@ -124,6 +125,7 @@ class MyPage extends Component {
         crumbMenu={['Home', 'Mypage']}
         isLogin="true"
         homeBtnHandle={homeBtnHandle}
+        loginHandle={loginHandle}
       >
         <Layout style={{ padding: '24px 0', background: '#fff' }}>
           <Sider width={200} style={{ background: '#fff' }}>
