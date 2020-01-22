@@ -15,8 +15,36 @@ export default class MyPage extends Component {
       isLoaded: false,
       bucketList: [],
       chosenBucket: {},
+      likeList: [],
+      likeFetch: false,
     };
     this.chooseBucket = this.chooseBucket.bind(this);
+    this.chooseLikeBucket = this.chooseLikeBucket.bind(this);
+    this.likeChangeHandle = this.likeChangeHandle.bind(this);
+  }
+
+  async componentDidMount() {
+    const mypageResult = await fetch(`http://127.0.0.1:3001/buckets/mypage`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(result => {
+        return result.bucketlists;
+      });
+
+    await fetch('http://127.0.0.1:3001/buckets/findLikeList', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          bucketList: mypageResult,
+          likeList: result.likeList,
+        });
+      });
   }
 
   chooseBucket(id) {
@@ -31,26 +59,46 @@ export default class MyPage extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch(`http://127.0.0.1:3001/buckets/mypage`, {
+  chooseLikeBucket(id) {
+    const { likeList } = this.state;
+    for (let i = 0; i < likeList.length; i++) {
+      if (id === likeList[i].id) {
+        this.setState({
+          chosenBucket: likeList[i],
+        });
+        break;
+      }
+    }
+  }
+
+  async likeChangeHandle() {
+    const mypageResult = await fetch(`http://127.0.0.1:3001/buckets/mypage`, {
       method: 'GET',
       credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
+        return result.bucketlists;
+      });
+
+    await fetch('http://127.0.0.1:3001/buckets/findLikeList', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(result => {
         this.setState({
           isLoaded: true,
-          bucketList: result.bucketlists,
-          chosenBucket: result.bucketlists[0],
+          likeList: result.likeList,
+          bucketList: mypageResult,
         });
       });
   }
 
   render() {
-    const { isLoaded, bucketList, chosenBucket } = this.state;
-    const { chooseBucket } = this;
-    const { homeBtnHandle } = this.props;
+    const { isLoaded, bucketList, chosenBucket, likeList } = this.state;
+    const { chooseBucket, chooseLikeBucket } = this;
+    const { homeBtnHandle, isLogin } = this.props;
     if (!isLoaded) {
       return (
         <Page
@@ -79,15 +127,16 @@ export default class MyPage extends Component {
           <Sider width={200} style={{ background: '#fff' }}>
             <Menu
               mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
+              // defaultSelectedKeys={['1']}
+              // defaultOpenKeys={['sub1']}
               style={{ height: '100%' }}
             >
               <SubMenu
                 key="sub1"
                 title={
                   <span>
-                    <Icon type="bars" />내 버킷리스트
+                    <Icon type="bars" />
+                    My Bucket List
                   </span>
                 }
               >
@@ -102,14 +151,18 @@ export default class MyPage extends Component {
                 title={
                   <span>
                     <Icon type="bars" />
-                    좋아요 표시한 리스트
+                    My Like List
                   </span>
                 }
               >
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
+                {likeList.map(el => (
+                  <Menu.Item
+                    key={el.id}
+                    onClick={() => chooseLikeBucket(el.id)}
+                  >
+                    {el.title}
+                  </Menu.Item>
+                ))}
               </SubMenu>
               <SubMenu
                 key="sub3"
@@ -128,7 +181,11 @@ export default class MyPage extends Component {
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            <BucketDetails {...chosenBucket} />
+            <BucketDetails
+              {...chosenBucket}
+              isLogin={isLogin}
+              likeChangeHandle={this.likeChangeHandle}
+            />
           </Content>
         </Layout>
       </Page>
