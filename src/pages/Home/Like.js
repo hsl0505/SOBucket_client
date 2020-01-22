@@ -78,11 +78,12 @@ export default class Like extends Component {
 
   render() {
     const { isLike, likeCount } = this.state;
-
     return (
       <div className="likeBtn">
         <Icon
-          onClick={this.likeHandler}
+          onClick={() => {
+            this.likeHandler();
+          }}
           type="like"
           className="likeBtn_icon"
           style={
