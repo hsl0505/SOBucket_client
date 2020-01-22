@@ -122,6 +122,7 @@ export default class App extends Component {
               <UserInfo
                 loginHandle={this.loginHandle}
                 homeBtnHandle={this.homeBtnHandle}
+                isLogin={isLogin}
               />
             )}
           />

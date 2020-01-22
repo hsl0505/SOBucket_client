@@ -18,6 +18,16 @@ export default class UserInfo extends Component {
     this.handlePost = this.handlePost.bind(this);
   }
 
+  handleChangeInput(data) {
+    // this.setState({
+    //   email: data.email,
+    //   username: data.username,
+    //   userNickName: data.userNickName,
+    //   phone: data.phone,
+    // });
+    this.setState({ ...data });
+  }
+
   componentDidMount() {
     fetch('http://localhost:3001/user/info', {
       method: 'GET',
@@ -78,6 +88,7 @@ export default class UserInfo extends Component {
       createdAt,
       selectedFile,
     } = this.state;
+    const { isLogin } = this.props;
     return (
       <div>
         <UserDetails
@@ -89,6 +100,7 @@ export default class UserInfo extends Component {
           selectedFile={selectedFile}
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
+          isLogin={isLogin}
         />
       </div>
     );

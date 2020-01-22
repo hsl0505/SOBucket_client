@@ -33,7 +33,7 @@ function Page(props) {
             key="1"
             onClick={() => {
               homeBtnHandle();
-              history.push('/Home');
+              history.push('/');
             }}
           >
             Home
