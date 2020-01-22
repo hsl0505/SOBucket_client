@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Statistic, TimePicker, DatePicker } from 'antd';
+import { Statistic, TimePicker, DatePicker, Icon } from 'antd';
 import testimg from '../../img/test_img.jpg';
 
 const { Countdown } = Statistic;
@@ -71,13 +71,13 @@ export default function BucketInformations(props) {
         <div className="finishbtn">
           <div className="center">
             <span className="btnSpan">완료</span>
-            <button>완료</button>
+            <Icon type="close" className="doneBtn_icon"></Icon>
           </div>
         </div>
         <div className="updatebtn">
           <div className="center">
             <span className="btnSpan">수정</span>
-            <button>수정</button>
+            <Icon type="edit" className="editBtn_icon"></Icon>
           </div>
         </div>
       </div>
