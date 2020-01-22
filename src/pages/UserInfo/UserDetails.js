@@ -13,9 +13,10 @@ export default function UserDetails(props) {
     createdAt,
     handleFileInput,
     handlePost,
+    isLogin,
   } = props;
   return (
-    <Page crumbMenu={['Home', 'Mypage', 'UserInfo']}>
+    <Page crumbMenu={['Home', 'Mypage', 'UserInfo']} isLogin={isLogin}>
       <PageHeader
         style={{
           border: '1px solid rgb(235, 237, 240)',
@@ -25,10 +26,10 @@ export default function UserDetails(props) {
         subTitle={username}
         extra={[
           <Button type="primary" size="large">
-            비밀번호 변경
+            회원정보 변경
           </Button>,
           <Button type="primary" size="large" style={{ margin: '5px' }}>
-            회원정보 변경
+            탈퇴
           </Button>,
         ]}
       >
@@ -74,6 +75,7 @@ UserDetails.defaultProps = {
   createdAt: '',
   handleFileInput: '',
   handlePost: '',
+  isLogin: false,
 };
 
 UserDetails.propTypes = {
@@ -84,4 +86,5 @@ UserDetails.propTypes = {
   createdAt: PropTypes.string,
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
+  isLogin: PropTypes.bool,
 };
