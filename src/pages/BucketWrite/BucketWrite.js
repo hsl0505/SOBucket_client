@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import BucketWriteDetails from './BucketWriteDetails';
 
 export default class BucketWrite extends Component {
@@ -8,10 +9,14 @@ export default class BucketWrite extends Component {
       title: null,
       content: null,
       image: null,
-      expectedDate:,
+      expectedDate: '',
+      expectedTime: moment().format('hh:mm:ss'),
       isValidating: '',
+      errorMessage: '',
       selectedFile: '',
     };
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
@@ -19,9 +24,15 @@ export default class BucketWrite extends Component {
   }
 
   handleSubmit() {
-    const { title, content, image, expectedDate, selectedFile } = this.state;
+    const {
+      title,
+      content,
+      expectedDate,
+      expectedTime,
+      selectedFile,
+    } = this.state;
     const url = 'http://127.0.0.1:3001/buckets/create';
-    return fetch(url, {
+    fetch(url, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -31,7 +42,7 @@ export default class BucketWrite extends Component {
         title,
         content,
         image: selectedFile,
-        expectedDate,
+        expectedDate: moment(`${expectedDate} ${expectedTime}`),
       }),
     })
       .then(res => {
@@ -50,10 +61,26 @@ export default class BucketWrite extends Component {
   }
 
   handleOnChange(e, key) {
-    console.log('e target : ', e.target.value);
+    // console.log('e target : ', e.target.value);
     this.setState({
       [key]: e.target.value,
     });
+  }
+
+  handleDateChange(date) {
+    // console.log(date);
+    this.setState({
+      expectedDate: date.format('YYYY[-]MM[-]DD'),
+    });
+    console.log('expectedDate : ', this.state.expectedDate);
+  }
+
+  handleTimeChange(time) {
+    console.log(time);
+    this.setState({
+      expectedTime: time.format('hh:mm:ss'),
+    });
+    console.log('expectedDate : ', this.state.expectedTime);
   }
 
   handlePost() {
@@ -81,7 +108,22 @@ export default class BucketWrite extends Component {
   }
 
   render() {
-    const { title, content, image, expectedDate, isValidating } = this.state;
+    const {
+      title,
+      content,
+      image,
+      expectedDate,
+      isValidating,
+      errorMessage,
+    } = this.state;
+    const {
+      handleFileInput,
+      handlePost,
+      handleSubmit,
+      handleOnChange,
+      handleDateChange,
+      handleTimeChange,
+    } = this;
     return (
       <div>
         <BucketWriteDetails
@@ -90,10 +132,13 @@ export default class BucketWrite extends Component {
           image={image}
           expectedDate={expectedDate}
           isValidating={isValidating}
-          handleFileInput={this.handleFileInput}
-          handlePost={this.handlePost}
-          handleSubmit={this.handleSubmit}
-          handleOnChange={this.handleOnChange}
+          errorMessage={errorMessage}
+          handleFileInput={handleFileInput}
+          handlePost={handlePost}
+          handleSubmit={handleSubmit}
+          handleOnChange={handleOnChange}
+          handleDateChange={handleDateChange}
+          handleTimeChange={handleTimeChange}
         />
       </div>
     );
