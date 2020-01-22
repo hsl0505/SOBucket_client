@@ -17,9 +17,42 @@ export default class SignUpPage extends React.Component {
       profileValue: '',
       isValidating: '',
       errorMessage: '',
+      selectedFile: '',
     };
+    this.handleFileInput = this.handleFileInput.bind(this);
+    this.handlePost = this.handlePost.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleFileInput(e) {
+    this.setState({
+      selectedFile: e.target.files[0],
+    });
+  }
+
+  handlePost() {
+    const { selectedFile } = this.state;
+    console.log('selectedFile : ', selectedFile);
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    return fetch('http://127.0.0.1:3001/buckets/image', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(result => {
+        console.log(result);
+        this.setState({ selectedFile: result });
+        alert('업로드 성공!!!');
+      })
+      .catch(err => {
+        console.error(err);
+        alert('업로드 실패... 다시 시도 해주세요');
+      });
   }
 
   handleOnChange(e, key) {
@@ -29,6 +62,7 @@ export default class SignUpPage extends React.Component {
   }
 
   handleOnClick(e) {
+    const url = 'http://127.0.0.1:3001/user/signup';
     e.preventDefault();
     this.setState({ isValidating: 'validating' });
     const {
@@ -38,31 +72,41 @@ export default class SignUpPage extends React.Component {
       passwordValue,
       confirmPwd,
       phoneValue,
-      profileValue,
+      selectedFile,
     } = this.state;
     if (passwordValue !== confirmPwd) {
       this.setState({
         errorMessage: '비밀번호 확인이 제대로 입력되지 않았습니다',
         isValidating: 'error',
       });
+    } else if (emailValue === '') {
+      this.setState({
+        errorMessage: '이메일이 제대로 입력되지 않았습니다',
+        isValidating: 'error',
+      });
     } else {
       window
-        .fetch('url', {
+        .fetch(url, {
           method: 'POST',
-          body: {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
             email: emailValue,
             userName: usernameValue,
-            nickname: nicknameValue,
+            userNickName: nicknameValue,
             password: passwordValue,
             phone: phoneValue,
-            avatar: profileValue,
-          },
+            avatar: selectedFile,
+          }),
         })
-        .then(data => {
+        .then(data => data.text())
+        .then(result => {
           this.setState({
-            isValidating: data === 'OK' ? 'success' : 'error',
+            isValidating: result === 'OK' ? 'success' : 'error',
             errorMessage:
-              data === 'OK'
+              result === 'OK'
                 ? '성공적으로 가입되었습니다'
                 : '가입이 실패했습니다',
           });
@@ -77,7 +121,7 @@ export default class SignUpPage extends React.Component {
   }
 
   render() {
-    const { handleOnChange, handleOnClick } = this;
+    const { handleOnChange, handleOnClick, handleFileInput, handlePost } = this;
     const {
       emailValue,
       usernameValue,
@@ -163,8 +207,14 @@ export default class SignUpPage extends React.Component {
               <Input
                 type="file"
                 value={profileValue}
-                onChange={e => handleOnChange(e, 'profileValue')}
+                onChange={e => {
+                  handleOnChange(e, 'profileValue');
+                  handleFileInput(e);
+                }}
               />
+              <button type="button" onClick={handlePost}>
+                upload image
+              </button>
             </Form.Item>
             <Form.Item>
               <Input
