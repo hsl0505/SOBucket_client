@@ -1,20 +1,25 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Input, Form, TimePicker, DatePicker } from 'antd';
+import { Input, Form, DatePicker, TimePicker } from 'antd';
 import moment from 'moment';
 import Page from '../page';
 
-export default function BucketWriteDetails(props) {
+function BucketWriteDetails(props) {
   const {
+    history,
     handleFileInput,
     handlePost,
     handleSubmit,
     handleOnChange,
+    handleDateChange,
+    handleTimeChange,
     title,
     content,
     image,
-    expectedDate,
+    // expectedDate,
     isValidating,
+    errorMessage,
   } = props;
   const dateFormat = 'YYYY-MM-DD';
   const timeFormat = 'HH:mm:ss';
@@ -25,10 +30,19 @@ export default function BucketWriteDetails(props) {
           <div className="expectedDate">
             <span>예정 일자</span>
             <DatePicker
-              defaultValue={moment(expectedDate, dateFormat)}
+              defaultValue={moment()}
               format={dateFormat}
+              onChange={e => {
+                handleDateChange(e);
+              }}
             />
-            <TimePicker defaultValue={moment(expectedDate, timeFormat)} />
+            <TimePicker
+              defaultValue={moment()}
+              format={timeFormat}
+              onChange={e => {
+                handleTimeChange(e);
+              }}
+            />
           </div>
         </div>
       </div>
@@ -62,8 +76,15 @@ export default function BucketWriteDetails(props) {
             </button>
           </Form.Item>
           <Form.Item>
-            <Input type="submit" value="create bucket" onClick={handleSubmit} />
-            {/* <span>{errorMessage}</span> */}
+            <Input
+              type="submit"
+              value="create bucket"
+              onClick={() => {
+                handleSubmit();
+                history.push('/mypage');
+              }}
+            />
+            <span>{errorMessage}</span>
           </Form.Item>
         </Form>
       </div>
@@ -71,16 +92,22 @@ export default function BucketWriteDetails(props) {
   );
 }
 
+export default withRouter(BucketWriteDetails);
+
 BucketWriteDetails.defaultProps = {
   handleFileInput: () => {},
   handlePost: () => {},
   handleSubmit: () => {},
   handleOnChange: () => {},
+  handleDateChange: () => {},
+  handleTimeChange: () => {},
   title: '',
   content: '',
   image: '',
-  expectedDate: new Date(),
+  // expectedDate: '',
   isValidating: '',
+  errorMessage: '',
+  history: '',
 };
 
 BucketWriteDetails.propTypes = {
@@ -88,9 +115,13 @@ BucketWriteDetails.propTypes = {
   handlePost: PropTypes.func,
   handleSubmit: PropTypes.func,
   handleOnChange: PropTypes.func,
+  handleDateChange: PropTypes.func,
+  handleTimeChange: PropTypes.func,
   title: PropTypes.string,
   content: PropTypes.string,
   image: PropTypes.string,
-  expectedDate: PropTypes.string,
+  // expectedDate: PropTypes.string,
   isValidating: PropTypes.string,
+  errorMessage: PropTypes.string,
+  history: PropTypes.any,
 };

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Layout, Menu, Icon, Skeleton } from 'antd';
 
 import Page from '../page';
@@ -8,7 +9,7 @@ import BucketDetails from '../Details/BucketDetails';
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
-export default class MyPage extends Component {
+class MyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,7 +99,8 @@ export default class MyPage extends Component {
   render() {
     const { isLoaded, bucketList, chosenBucket, likeList } = this.state;
     const { chooseBucket, chooseLikeBucket } = this;
-    const { homeBtnHandle, isLogin } = this.props;
+    const { homeBtnHandle, isLogin, history } = this.props;
+
     if (!isLoaded) {
       return (
         <Page
@@ -164,20 +166,14 @@ export default class MyPage extends Component {
                   </Menu.Item>
                 ))}
               </SubMenu>
-              <SubMenu
-                key="sub3"
-                title={
-                  <span>
-                    <Icon type="bars" />
-                    기타 리스트
-                  </span>
-                }
+              <button
+                type="button"
+                onClick={() => {
+                  history.push('/create');
+                }}
               >
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu>
+                버킷리스트 만들기
+              </button>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
@@ -192,3 +188,5 @@ export default class MyPage extends Component {
     );
   }
 }
+
+export default withRouter(MyPage);
