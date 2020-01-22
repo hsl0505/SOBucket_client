@@ -18,17 +18,19 @@ export default function BucketDetails(props) {
     content,
     expectedDate,
     image,
-    userNickName,
-    avatar,
+    user,
     isLogin,
+    mylike,
   } = props;
+
+  const { userNickName, avatar } = user;
 
   const likeButton = (
     <Like
       likeCount={likeCount}
       isLogin={isLogin}
       bucketId={id}
-      mylike={false}
+      mylike={mylike}
       key={1}
     />
   );
@@ -88,9 +90,9 @@ BucketDetails.defaultProps = {
   likeCount: 0,
   expectedDate: new Date().toISOString(),
   user_id: 0,
-  userNickName: 'nickname',
-  avatar: 'example ',
+  user: {},
   isLogin: false,
+  mylike: false,
 };
 
 BucketDetails.propTypes = {
@@ -100,8 +102,11 @@ BucketDetails.propTypes = {
   content: PropTypes.string,
   likeCount: PropTypes.number,
   expectedDate: PropTypes.string,
-  userNickName: PropTypes.string,
-  avatar: PropTypes.string,
   user_id: PropTypes.number,
   isLogin: PropTypes.bool,
+  user: PropTypes.shape({
+    userNickName: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+  mylike: PropTypes.bool,
 };
