@@ -67,7 +67,7 @@ function Page(props) {
         {children}
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+        SO Bucket List Design ©2020 Created by HaliBoliSky
       </Footer>
     </Layout>
   );
