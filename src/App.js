@@ -99,6 +99,7 @@ export default class App extends Component {
               <BucketDetailPage
                 isLogin={isLogin}
                 homeBtnHandle={this.homeBtnHandle}
+                loginHandle={this.loginHandle}
               />
             )}
           />
@@ -106,12 +107,13 @@ export default class App extends Component {
             exact
             path="/mypage"
             render={() => {
-              // if (isLogin) {
               return (
-                <MyPage isLogin={isLogin} homeBtnHandle={this.homeBtnHandle} />
+                <MyPage
+                  isLogin={isLogin}
+                  homeBtnHandle={this.homeBtnHandle}
+                  loginHandle={this.loginHandle}
+                />
               );
-              // }
-              // return <Redirect to="/Home" />;
             }}
           />
           <Route exact path="/create" render={() => <BucketWrite />} />
