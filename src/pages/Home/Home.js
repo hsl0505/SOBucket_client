@@ -15,23 +15,26 @@ export default class Home extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch('http://127.0.0.1:3001/buckets/home', {
+  async componentDidMount() {
+    const homeResult = await fetch('http://127.0.0.1:3001/buckets/home', {
       method: 'GET',
       credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
-        this.setState({ bucketListLoad: false, bucketList: result.bucketList });
+        return result.bucketList;
+        // this.setState({ bucketListLoad: false, bucketList: result.bucketList });
       });
-    fetch('http://127.0.0.1:3001/buckets/home/today', {
+    await fetch('http://127.0.0.1:3001/buckets/home/today', {
       method: 'GET',
       credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
         this.setState({
+          bucketListLoad: false,
           todayBucketListLoad: false,
+          bucketList: homeResult,
           todayBucketList: result.todayBucketList,
         });
       });
