@@ -9,13 +9,14 @@ import Page from '../page';
 class BucketDetailPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: false, bucketData: {} };
+    this.state = { isLoaded: false, bucketData: {}, likeSync: true };
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:3001/buckets/pid/${id}`, {
+    fetch(`http://127.0.0.1:3001/buckets/pid/${id}`, {
       method: 'GET',
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(result => {
@@ -25,17 +26,21 @@ class BucketDetailPage extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    const { isLogin } = this.props;
+    const { isLogin, homeBtnHandle } = this.props;
     const { isLoaded, bucketData } = this.state;
     if (isLoaded) {
       return (
-        <Page crumbMenu={['Home', 'Pid', id]} isLogin={isLogin}>
+        <Page
+          crumbMenu={['Home', 'Pid', id]}
+          isLogin={isLogin}
+          homeBtnHandle={homeBtnHandle}
+        >
           <BucketDetails {...bucketData} isLogin={isLogin} />
         </Page>
       );
     }
     return (
-      <Page crumbMenu={['Home', 'Pid', id]}>
+      <Page crumbMenu={['Home', 'Pid', id]} homeBtnHandle={homeBtnHandle}>
         <Skeleton active />
       </Page>
     );

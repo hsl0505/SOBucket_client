@@ -50,9 +50,14 @@ export default class MyPage extends Component {
   render() {
     const { isLoaded, bucketList, chosenBucket } = this.state;
     const { chooseBucket } = this;
+    const { homeBtnHandle } = this.props;
     if (!isLoaded) {
       return (
-        <Page crumbMenu={['Home', 'Mypage']} isLogin="true">
+        <Page
+          crumbMenu={['Home', 'Mypage']}
+          isLogin="true"
+          homeBtnHandle={homeBtnHandle}
+        >
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
             <Sider width={200} style={{ background: '#fff' }}>
               <Skeleton />
@@ -65,7 +70,11 @@ export default class MyPage extends Component {
       );
     }
     return (
-      <Page crumbMenu={['Home', 'Mypage']} isLogin="true">
+      <Page
+        crumbMenu={['Home', 'Mypage']}
+        isLogin="true"
+        homeBtnHandle={homeBtnHandle}
+      >
         <Layout style={{ padding: '24px 0', background: '#fff' }}>
           <Sider width={200} style={{ background: '#fff' }}>
             <Menu

@@ -89,12 +89,13 @@ export default class SignUpPage extends React.Component {
       isValidating,
       errorMessage,
     } = this.state;
-    const { loginHandle } = this.props;
+    const { loginHandle, homeBtnHandle } = this.props;
     return (
       <Page
         crumbMenu={['Home', 'Signup']}
         isSignUpPage="true"
         loginHandle={loginHandle}
+        homeBtnHandle={homeBtnHandle}
       >
         <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
           <Form>
@@ -182,8 +183,10 @@ export default class SignUpPage extends React.Component {
 
 SignUpPage.defaultProps = {
   loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 SignUpPage.propTypes = {
   loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };
