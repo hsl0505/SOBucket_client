@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Form } from 'antd';
+import { Input, Form, Button } from 'antd';
 
 import Page from '../page';
 
@@ -59,6 +59,40 @@ export default class SignUpPage extends React.Component {
     this.setState({
       [key]: e.target.value,
     });
+  }
+
+  handleDuplicateTestOnclick(e) {
+    e.preventDefault();
+    const { nicknameValue } = this.state;
+    window
+      .fetch('http://127.0.0.1:3001/buckets/duplicate', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userNickName: nicknameValue,
+        }),
+      })
+      .then(result => {
+        if (result === 'EXIST') {
+          this.setState({
+            errorMessage: '중복된 별명입니다',
+            isValidating: 'error',
+          });
+        } else {
+          this.setState({
+            errorMessage: '이 별명은 사용할 수 있는 별명입니다',
+          });
+        }
+      })
+      .catch(error => {
+        this.setState({
+          errorMessage: error.toString(),
+          isValidating: 'error',
+        });
+      });
   }
 
   handleOnClick(e) {
@@ -121,7 +155,13 @@ export default class SignUpPage extends React.Component {
   }
 
   render() {
-    const { handleOnChange, handleOnClick, handleFileInput, handlePost } = this;
+    const {
+      handleOnChange,
+      handleOnClick,
+      handleFileInput,
+      handlePost,
+      handleDuplicateTestOnclick,
+    } = this;
     const {
       emailValue,
       usernameValue,
@@ -170,7 +210,16 @@ export default class SignUpPage extends React.Component {
                 type="text"
                 value={nicknameValue}
                 onChange={e => handleOnChange(e, 'nicknameValue')}
+                style={{ width: '80%' }}
               />
+              <Button
+                type="primary"
+                size="large"
+                style={{ marginLeft: '3%' }}
+                onClick={handleDuplicateTestOnclick}
+              >
+                중복검사
+              </Button>
             </Form.Item>
             <Form.Item
               label="Password"
@@ -211,10 +260,16 @@ export default class SignUpPage extends React.Component {
                   handleOnChange(e, 'profileValue');
                   handleFileInput(e);
                 }}
+                style={{ width: '80%', display: 'inherit' }}
               />
-              <button type="button" onClick={handlePost}>
-                upload image
-              </button>
+              <Button
+                type="primary"
+                size="large"
+                style={{ marginLeft: '3%' }}
+                onClick={handlePost}
+              >
+                UPLOAD
+              </Button>
             </Form.Item>
             <Form.Item>
               <Input

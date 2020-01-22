@@ -6,6 +6,7 @@ import SearchResult from './pages/SearchResult/SearchResult';
 import BucketDetailPage from './pages/Details/BucketDetailPage';
 import MyPage from './pages/Mypage/MyPage';
 import SignUpPage from './pages/SignUp/SignUpPage';
+import UserInfo from './pages/UserInfo/UserInfo';
 
 export default class App extends Component {
   constructor() {
@@ -111,6 +112,16 @@ export default class App extends Component {
               // }
               // return <Redirect to="/Home" />;
             }}
+          />
+          <Route
+            exact
+            path="/userinfo"
+            render={() => (
+              <UserInfo
+                loginHandle={this.loginHandle}
+                homeBtnHandle={this.homeBtnHandle}
+              />
+            )}
           />
           <Route
             path="/"
