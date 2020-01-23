@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Icon, message } from 'antd';
 
 export default function GetBucket(props) {
-  const { isLogin, bucket } = props;
+  const { isLogin, bucket, likeChangeHandle } = props;
 
   function forkHandle() {
     if (!isLogin) {
-      console.log('로긴해야함');
+      alert('로그인이 필요합니다');
     } else {
-      message.loading('my bucket에 담는 중', 1).then(() => {
+      message.loading('my bucket에 담는 중', 1.5).then(() => {
         fetch('http://127.0.0.1:3001/buckets/fork', {
           method: 'POST',
           body: JSON.stringify({
@@ -25,7 +25,9 @@ export default function GetBucket(props) {
         })
           .then(res => res.json())
           .then(() => {
-            message.success('my bucket에 추가되었습니다!');
+            message.success('my bucket에 추가되었습니다!').then(async () => {
+              await likeChangeHandle();
+            });
           })
           .catch(err => {
             console.log(err);
@@ -45,6 +47,7 @@ export default function GetBucket(props) {
 GetBucket.defaultProps = {
   isLogin: false,
   bucket: {},
+  likeChangeHandle: () => {},
 };
 
 GetBucket.propTypes = {
@@ -57,4 +60,5 @@ GetBucket.propTypes = {
     title: PropTypes.string,
     expectedDate: PropTypes.string,
   }),
+  likeChangeHandle: PropTypes.func,
 };

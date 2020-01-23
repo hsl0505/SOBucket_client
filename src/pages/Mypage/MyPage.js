@@ -18,6 +18,7 @@ class MyPage extends Component {
       chosenBucket: {},
       likeList: [],
       likeFetch: false,
+      isMyPage: false,
     };
     this.chooseBucket = this.chooseBucket.bind(this);
     this.chooseLikeBucket = this.chooseLikeBucket.bind(this);
@@ -54,6 +55,7 @@ class MyPage extends Component {
       if (id === bucketList[i].id) {
         this.setState({
           chosenBucket: bucketList[i],
+          isMyPage: true,
         });
         break;
       }
@@ -66,6 +68,7 @@ class MyPage extends Component {
       if (id === likeList[i].id) {
         this.setState({
           chosenBucket: likeList[i],
+          isMyPage: false,
         });
         break;
       }
@@ -97,7 +100,13 @@ class MyPage extends Component {
   }
 
   render() {
-    const { isLoaded, bucketList, chosenBucket, likeList } = this.state;
+    const {
+      isLoaded,
+      bucketList,
+      chosenBucket,
+      likeList,
+      isMyPage,
+    } = this.state;
     const { chooseBucket, chooseLikeBucket } = this;
     const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
 
@@ -183,7 +192,7 @@ class MyPage extends Component {
               {...chosenBucket}
               isLogin={isLogin}
               likeChangeHandle={this.likeChangeHandle}
-              isMyPage={true}
+              isMyPage={isMyPage}
             />
           </Content>
         </Layout>
