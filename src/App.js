@@ -116,7 +116,17 @@ export default class App extends Component {
               );
             }}
           />
-          <Route exact path="/create" render={() => <BucketWrite />} />
+          <Route
+            exact
+            path="/create"
+            render={() => (
+              <BucketWrite
+                isLogin={isLogin}
+                loginHandle={this.loginHandle}
+                homeBtnHandle={this.homeBtnHandle}
+              />
+            )}
+          />
           <Route
             exact
             path="/userinfo"
