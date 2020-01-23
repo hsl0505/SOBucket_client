@@ -88,7 +88,7 @@ export default class UserInfo extends Component {
       createdAt,
       selectedFile,
     } = this.state;
-    const { isLogin } = this.props;
+    const { isLogin, loginHandle, homeBtnHandle } = this.props;
     return (
       <div>
         <UserDetails
@@ -101,6 +101,8 @@ export default class UserInfo extends Component {
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
           isLogin={isLogin}
+          loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
       </div>
     );
