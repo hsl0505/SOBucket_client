@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { PageHeader, Button, Descriptions, Input } from 'antd';
 
 import Page from '../page';
+import UserUpdateModalButton from './UserUpdateModalButton';
 
 export default function UserDetails(props) {
   const {
@@ -10,13 +11,21 @@ export default function UserDetails(props) {
     username,
     userNickName,
     phone,
+    avatar,
     createdAt,
     handleFileInput,
     handlePost,
     isLogin,
+    loginHandle,
+    homeBtnHandle,
   } = props;
   return (
-    <Page crumbMenu={['Home', 'Mypage', 'UserInfo']} isLogin={isLogin}>
+    <Page
+      crumbMenu={['Home', 'Mypage', 'UserInfo']}
+      isLogin={isLogin}
+      loginHandle={loginHandle}
+      homeBtnHandle={homeBtnHandle}
+    >
       <PageHeader
         style={{
           border: '1px solid rgb(235, 237, 240)',
@@ -25,12 +34,15 @@ export default function UserDetails(props) {
         title="User Information"
         subTitle={username}
         extra={[
-          <Button type="primary" size="large">
-            회원정보 변경
-          </Button>,
-          <Button type="primary" size="large" style={{ margin: '5px' }}>
-            탈퇴
-          </Button>,
+          <UserUpdateModalButton
+            email={email}
+            nickname={userNickName}
+            phone={phone}
+          >
+            <Button type="primary" size="large" style={{ margin: '5px' }}>
+              탈퇴
+            </Button>
+          </UserUpdateModalButton>
         ]}
       >
         <Descriptions title="User Info" bordered>
@@ -45,10 +57,7 @@ export default function UserDetails(props) {
           <Descriptions.Item label="SignupDate">{createdAt}</Descriptions.Item>
 
           <Descriptions.Item label="Profile">
-            <img
-              alt="profile"
-              src="https://api.adorable.io/avatars/150/test.png"
-            />
+            <img alt="profile" src={avatar} />
           </Descriptions.Item>
           <Descriptions.Item label="Profile Change" span={2}>
             <Input type="file" name="file" onChange={handleFileInput} />
@@ -72,10 +81,13 @@ UserDetails.defaultProps = {
   username: '',
   userNickName: '',
   phone: '',
+  avatar: '',
   createdAt: '',
   handleFileInput: '',
   handlePost: '',
   isLogin: false,
+  loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 UserDetails.propTypes = {
@@ -83,8 +95,11 @@ UserDetails.propTypes = {
   username: PropTypes.string,
   userNickName: PropTypes.string,
   phone: PropTypes.string,
+  avatar: PropTypes.string,
   createdAt: PropTypes.string,
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
   isLogin: PropTypes.bool,
+  loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };

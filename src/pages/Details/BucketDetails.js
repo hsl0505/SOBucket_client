@@ -112,6 +112,8 @@ export default function BucketDetails(props) {
           isValidating={isValidating}
           errorMessage={errorMessage}
           isMyPage={isMyPage}
+          id={id}
+          likeChangeHandle={likeChangeHandle}
         />
         <RelatedInfos />
         <BucketReview />

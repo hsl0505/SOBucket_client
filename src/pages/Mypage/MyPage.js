@@ -20,7 +20,8 @@ class MyPage extends Component {
       likeList: [],
       likeFetch: false,
       modify: false,
-
+      // title: '',
+      image: '',
       isValidating: '',
       errorMessage: '',
       isMyPage: false,

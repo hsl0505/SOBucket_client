@@ -10,12 +10,32 @@ export default class UserInfo extends Component {
       username: '임현성3',
       userNickName: '현성3',
       phone: '3-3-3',
+      avatar: '',
       createdAt: '2020-01-21 00:59:36',
       selectedFile: '',
     };
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:3001/user/info', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(response => {
+        console.log(response);
+        this.setState({
+          email: response.email,
+          username: response.userName,
+          userNickName: response.userNickName,
+          phone: response.phone,
+          avatar: response.avatar,
+          createdAt: response.createdAt,
+        });
+      });
   }
 
   handleChangeInput(data) {
@@ -27,39 +47,12 @@ export default class UserInfo extends Component {
     // });
     this.setState({ ...data });
   }
-
-  componentDidMount() {
-    fetch('http://localhost:3001/user/info', {
-      method: 'GET',
-    }).then(response => {
-      const reader = response.body.getReader();
-      let charsReceived = 0;
-
-      // read() returns a promise that resolves
-      // when a value has been received
-      reader.read().then(({ done, value }) => {
-        // Result objects contain two properties:
-        // done  - true if the stream has already given you all its data.
-        // value - some data. Always undefined when done is true.
-        if (done) {
-          console.log('Stream complete');
-          para.textContent = value;
-          return;
-        }
-
-        console.log(value);
-        console.log(value.buffer);
-        return value;
-      });
-    });
-  }
-
   //   handleSubmit() {}
 
   handleFileInput(e) {
-    this.setState = {
+    this.setState({
       selectedFile: e.target.files[0],
-    };
+    });
   }
 
   handlePost() {
@@ -85,10 +78,11 @@ export default class UserInfo extends Component {
       username,
       userNickName,
       phone,
+      avatar,
       createdAt,
       selectedFile,
     } = this.state;
-    const { isLogin } = this.props;
+    const { isLogin, loginHandle, homeBtnHandle } = this.props;
     return (
       <div>
         <UserDetails
@@ -96,11 +90,14 @@ export default class UserInfo extends Component {
           username={username}
           userNickName={userNickName}
           phone={phone}
+          avatar={avatar}
           createdAt={createdAt}
           selectedFile={selectedFile}
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
           isLogin={isLogin}
+          loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
       </div>
     );

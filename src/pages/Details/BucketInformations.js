@@ -35,15 +35,27 @@ function BucketInformations(props) {
     errorMessage, //
     isMyPage,
     history,
+    likeChangeHandle,
   } = props;
 
   const dateFormat = 'YYYY-MM-DD';
   const timeFormat = 'HH:mm:ss';
 
-  function handleDeleteClick(e) {
-    e.preventDefault();
+  function handleDeleteClick() {
+    // e.preventDefault();
     // 여기다 구현해 주시면 됩니다!
-    history.push('/');
+    fetch('http://127.0.0.1:3001/buckets/deleteBucket', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ bucketId: id }),
+      credentials: 'include',
+    }).then(result => {
+      console.log(result);
+      likeChangeHandle();
+      history.push('/mypage');
+    });
   }
 
   return (
