@@ -47,13 +47,12 @@ export default class UserInfo extends Component {
     // });
     this.setState({ ...data });
   }
-
   //   handleSubmit() {}
 
   handleFileInput(e) {
-    this.setState = {
+    this.setState({
       selectedFile: e.target.files[0],
-    };
+    });
   }
 
   handlePost() {
