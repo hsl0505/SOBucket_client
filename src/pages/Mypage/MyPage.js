@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Layout, Menu, Icon, Skeleton } from 'antd';
+import { Layout, Menu, Icon, Skeleton, Button } from 'antd';
 import moment from 'moment';
 
 import Page from '../page';
@@ -23,21 +23,20 @@ class MyPage extends Component {
       // title: '',
       image: '',
       isValidating: '',
-      content: '',
       errorMessage: '',
       isMyPage: false,
+      selectedFile: '',
     };
     this.chooseBucket = this.chooseBucket.bind(this);
     this.chooseLikeBucket = this.chooseLikeBucket.bind(this);
     this.likeChangeHandle = this.likeChangeHandle.bind(this);
     this.handleModify = this.handleModify.bind(this);
-
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTitleOnChange = this.handleTitleOnChange.bind(this);
     this.handleContentOnChange = this.handleContentOnChange.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
@@ -123,13 +122,8 @@ class MyPage extends Component {
   }
 
   handleSubmit(id) {
-    const {
-      title,
-      content,
-      expectedDate,
-      expectedTime,
-      selectedFile,
-    } = this.state;
+    const { title, expectedDate, content } = this.state.chosenBucket;
+    const { selectedFile } = this;
     const url = 'http://127.0.0.1:3001/buckets/update';
     fetch(url, {
       method: 'POST',
@@ -142,7 +136,7 @@ class MyPage extends Component {
         title,
         content,
         image: selectedFile,
-        expectedDate: moment(`${expectedDate} ${expectedTime}`),
+        expectedDate: moment(`${expectedDate} 00:00:00`),
       }),
     })
       .then(res => {
@@ -160,10 +154,24 @@ class MyPage extends Component {
     });
   }
 
-  handleOnChange(e, key) {
-    // console.log('e target : ', e.target.value);
+  handleDateChange(date) {
+    const { chosenBucket } = this.state;
+    const nextChosen = { ...chosenBucket };
     this.setState({
-      [key]: e.target.value,
+      chosenBucket: {
+        ...nextChosen,
+        expectedDate: date.format('YYYY[-]MM[-]DD'),
+      },
+    });
+    console.log('expectedDate : ', this.state.expectedDate);
+  }
+
+  handleTitleOnChange(e) {
+    const { chosenBucket } = this.state;
+    const nextChosen = { ...chosenBucket };
+    console.log('e.target.value : ', e.target.value);
+    this.setState({
+      chosenBucket: { ...nextChosen, title: e.target.value },
     });
   }
 
@@ -174,14 +182,6 @@ class MyPage extends Component {
     this.setState({
       chosenBucket: { ...nextChosen, content: e.target.value },
     });
-  }
-
-  handleDateChange(date) {
-    // console.log(date);
-    this.setState({
-      expectedDate: date.format('YYYY[-]MM[-]DD'),
-    });
-    console.log('expectedDate : ', this.state.expectedDate);
   }
 
   handleTimeChange(time) {
@@ -222,9 +222,7 @@ class MyPage extends Component {
       bucketList,
       chosenBucket,
       likeList,
-
       modify,
-      title,
       isValidating,
       errorMessage,
       isMyPage,
@@ -237,10 +235,10 @@ class MyPage extends Component {
       handleFileInput,
       handlePost,
       handleSubmit,
-      handleOnChange,
       handleDateChange,
       handleTimeChange,
       handleContentOnChange,
+      handleTitleOnChange,
     } = this;
 
     const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
@@ -273,12 +271,7 @@ class MyPage extends Component {
       >
         <Layout style={{ padding: '24px 0', background: '#fff' }}>
           <Sider width={200} style={{ background: '#fff' }}>
-            <Menu
-              mode="inline"
-              // defaultSelectedKeys={['1']}
-              // defaultOpenKeys={['sub1']}
-              style={{ height: '100%' }}
-            >
+            <Menu mode="inline" style={{ height: '100%' }}>
               <SubMenu
                 key="sub1"
                 title={
@@ -312,14 +305,14 @@ class MyPage extends Component {
                   </Menu.Item>
                 ))}
               </SubMenu>
-              <button
+              <Button
                 type="button"
                 onClick={() => {
                   history.push('/create');
                 }}
               >
                 버킷리스트 만들기
-              </button>
+              </Button>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
@@ -333,11 +326,10 @@ class MyPage extends Component {
               handleFileInput={handleFileInput}
               handlePost={handlePost}
               handleSubmit={handleSubmit}
-              handleOnChange={handleOnChange}
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
               handleContentOnChange={handleContentOnChange}
-              // title={title}
+              handleTitleOnChange={handleTitleOnChange}
               isValidating={isValidating}
               errorMessage={errorMessage}
               isMyPage={isMyPage}

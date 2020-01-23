@@ -25,10 +25,11 @@ function BucketInformations(props) {
     handleFileInput, //
     handlePost, //
     handleSubmit, //
-    handleOnChange, //
+    // handleOnChange, //
     handleDateChange,
     handleTimeChange,
     handleContentOnChange,
+    handleTitleOnChange,
     title, //
     isValidating, //
     errorMessage, //
@@ -146,10 +147,11 @@ function BucketInformations(props) {
               handleFileInput={handleFileInput}
               handlePost={handlePost}
               handleSubmit={handleSubmit}
-              handleOnChange={handleOnChange}
+              // handleOnChange={handleOnChange}
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
               handleContentOnChange={handleContentOnChange}
+              handleTitleOnChange={handleTitleOnChange}
               title={title}
               isValidating={isValidating}
               errorMessage={errorMessage}
@@ -174,10 +176,11 @@ BucketInformations.defaultProps = {
   handleFileInput: () => {},
   handlePost: () => {},
   handleSubmit: () => {},
-  handleOnChange: () => {},
+  // handleOnChange: () => {},
   handleDateChange: () => {},
   handleTimeChange: () => {},
   handleContentOnChange: () => {},
+  handleTitleOnChange: () => {},
   title: '',
   isValidating: '',
   errorMessage: '',
@@ -193,10 +196,11 @@ BucketInformations.propTypes = {
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
   handleSubmit: PropTypes.func,
-  handleOnChange: PropTypes.func,
+  // handleOnChange: PropTypes.func,
   handleDateChange: PropTypes.func,
   handleTimeChange: PropTypes.func,
   handleContentOnChange: PropTypes.func,
+  handleTitleOnChange: PropTypes.func,
   title: PropTypes.string,
   isValidating: PropTypes.string,
   errorMessage: PropTypes.string,
