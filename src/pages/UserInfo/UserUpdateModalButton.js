@@ -43,6 +43,7 @@ export default class LoginModalButton extends React.Component {
       nickname,
       phone,
       children,
+      handleRerender,
     } = this.props;
     return (
       <div>
@@ -59,6 +60,7 @@ export default class LoginModalButton extends React.Component {
           username={username}
           nickname={nickname}
           phone={phone}
+          handleRerender={handleRerender}
         />
       </div>
     );
@@ -72,6 +74,7 @@ LoginModalButton.defaultProps = {
   nickname: '',
   phone: '',
   children: '',
+  handleRerender: () => {},
 };
 
 LoginModalButton.propTypes = {
@@ -81,4 +84,5 @@ LoginModalButton.propTypes = {
   nickname: PropTypes.string,
   phone: PropTypes.string,
   children: PropTypes.node,
+  handleRerender: PropTypes.func,
 };

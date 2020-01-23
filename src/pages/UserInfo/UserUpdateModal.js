@@ -1,10 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Modal, Form, Input } from 'antd';
 
-class UserUpdateModal extends React.Component {
+export default class UserUpdateModal extends React.Component {
   constructor(props) {
     super(props);
     const { email, nickname, phone } = this.props;
@@ -28,7 +27,7 @@ class UserUpdateModal extends React.Component {
   handleSubmitClick(e) {
     console.log(e);
     this.setState({ isValidating: 'validating' });
-    const { hideModal, history } = this.props;
+    const { hideModal, handleRerender } = this.props;
     const { emailValue, nicknameValue, phoneValue } = this.state;
     fetch('http://127.0.0.1:3001/user/info', {
       method: 'POST',
@@ -46,8 +45,8 @@ class UserUpdateModal extends React.Component {
         console.log(result);
         if (result) {
           this.setState({ isValidating: 'success' });
+          handleRerender();
           hideModal();
-          history.replace('/userinfo');
         } else {
           this.setState({
             isValidating: 'warning',
@@ -118,20 +117,18 @@ UserUpdateModal.defaultProps = {
   visible: false,
   hideModal: () => {},
   handleCancel: () => {},
-  history: '',
   email: '',
   nickname: '',
   phone: '',
+  handleRerender: () => {},
 };
 
 UserUpdateModal.propTypes = {
   visible: PropTypes.bool,
   hideModal: PropTypes.func,
   handleCancel: PropTypes.func,
-  history: PropTypes.any,
   email: PropTypes.string,
   nickname: PropTypes.string,
   phone: PropTypes.string,
+  handleRerender: PropTypes.func,
 };
-
-export default withRouter(UserUpdateModal);
