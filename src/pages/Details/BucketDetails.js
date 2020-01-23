@@ -22,6 +22,7 @@ export default function BucketDetails(props) {
     user,
     isLogin,
     mylike,
+    isMyPage,
     likeChangeHandle,
     handleModify,
     modify,
@@ -59,6 +60,7 @@ export default function BucketDetails(props) {
         content,
         expectedDate,
       }}
+      likeChangeHandle={likeChangeHandle}
     />
   );
 
@@ -108,6 +110,8 @@ export default function BucketDetails(props) {
           title={title}
           isValidating={isValidating}
           errorMessage={errorMessage}
+          isMyPage={isMyPage}
+
         />
         <RelatedInfos />
         <BucketReview />
@@ -124,9 +128,13 @@ BucketDetails.defaultProps = {
   likeCount: 0,
   expectedDate: new Date().toISOString(),
   user_id: 0,
-  user: {},
+  user: {
+    userNickName: 'nickname',
+    avatar: 'example ',
+  },
   isLogin: false,
   mylike: false,
+  isMyPage: false,
   likeChangeHandle: () => {},
   handleModify: () => {},
   modify: false,
@@ -150,11 +158,9 @@ BucketDetails.propTypes = {
   expectedDate: PropTypes.string,
   user_id: PropTypes.number,
   isLogin: PropTypes.bool,
-  user: PropTypes.shape({
-    userNickName: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
+  user: PropTypes.objectOf(PropTypes.string),
   mylike: PropTypes.bool,
+  isMyPage: PropTypes.bool,
   likeChangeHandle: PropTypes.func,
   handleModify: PropTypes.func,
   modify: PropTypes.bool,

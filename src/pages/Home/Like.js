@@ -48,7 +48,7 @@ export default class Like extends Component {
 
     if (!isLogin) {
       // 로그인 안되있음
-      console.log('로긴해야함');
+      alert('로그인이 필요합니다');
     } else if (isLogin) {
       // 라이크 false 인 상태에서 클릭 시 -> (좋아요 +1)
       if (!isLike) {

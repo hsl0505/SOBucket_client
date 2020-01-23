@@ -19,6 +19,20 @@ function Page(props) {
     homeBtnHandle,
   } = props;
 
+  function logoutHandle() {
+    fetch('http://127.0.0.1:3001/user/logout', {
+      method: 'POST',
+      body: {},
+      credentials: 'include',
+    }).then(() => {
+      console.log('bye');
+      localStorage.removeItem('isLogin');
+      localStorage.removeItem('userNickName');
+      loginHandle();
+      history.replace('/');
+    });
+  }
+
   return (
     <Layout style={{ minHeight: '-webkit-fill-available' }}>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
@@ -33,13 +47,15 @@ function Page(props) {
             key="1"
             onClick={() => {
               homeBtnHandle();
-              history.push('/Home');
+              history.push('/');
             }}
           >
             Home
           </Menu.Item>
           {isLogin ? (
-            <Menu.Item key="2">Log Out</Menu.Item>
+            <Menu.Item key="2" onClick={logoutHandle}>
+              Log Out
+            </Menu.Item>
           ) : (
             <Menu.Item key="2">
               <LoginModalDiv loginHandle={loginHandle} />

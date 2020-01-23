@@ -26,6 +26,7 @@ function MainNav(props) {
   if (!isLogin) {
     return (
       <div className="mainNav">
+        <div className="mainLogo"></div>
         <div className="mainNav_user">
           <div className="mainNav_user_avatar">{userNickName}</div>
           <div className="mainNav_user_NickName">{userNickName}</div>
@@ -39,7 +40,7 @@ function MainNav(props) {
             history.replace('/');
           }}
         >
-          SO Bucket
+          Home
         </Button>
 
         <LoginModalButton loginHandle={loginHandle} />
@@ -58,6 +59,7 @@ function MainNav(props) {
   }
   return (
     <div className="mainNav">
+      <div className="mainLogo"></div>
       <div className="mainNav_user">
         <div className="mainNav_user_avatar">avatar</div>
         <div className="mainNav_user_NickName">{userNickName}</div>
@@ -71,7 +73,7 @@ function MainNav(props) {
           history.replace('/');
         }}
       >
-        SO Bucket
+        Home
       </Button>
 
       <Button

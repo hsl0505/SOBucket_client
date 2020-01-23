@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import BucketWriteDetails from './BucketWriteDetails';
 
 export default class BucketWrite extends Component {
@@ -124,6 +125,7 @@ export default class BucketWrite extends Component {
       handleDateChange,
       handleTimeChange,
     } = this;
+    const { isLogin, loginHandle, homeBtnHandle } = this.props;
     return (
       <div>
         <BucketWriteDetails
@@ -139,8 +141,23 @@ export default class BucketWrite extends Component {
           handleOnChange={handleOnChange}
           handleDateChange={handleDateChange}
           handleTimeChange={handleTimeChange}
+          isLogin={isLogin}
+          loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
       </div>
     );
   }
 }
+
+BucketWrite.defaultProps = {
+  isLogin: false,
+  loginHandle: () => {},
+  homeBtnHandle: () => {},
+};
+
+BucketWrite.propTypes = {
+  isLogin: PropTypes.bool,
+  loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
+};

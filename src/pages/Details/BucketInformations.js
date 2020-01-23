@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Statistic, TimePicker, DatePicker, Icon, Form, Input } from 'antd';
@@ -8,7 +9,7 @@ import BucketUpdateModalButton from './BucketUpdateModalButton';
 
 const { Countdown } = Statistic;
 
-export default function BucketInformations(props) {
+function BucketInformations(props) {
   const {
     id, //
     expectedDate, //
@@ -16,6 +17,7 @@ export default function BucketInformations(props) {
     image, //
     likeButton,
     forkButton,
+
     //이하 추가됨
     handleModify,
     modify,
@@ -30,11 +32,20 @@ export default function BucketInformations(props) {
     title, //
     isValidating, //
     errorMessage, //
+    isMyPage,
+    history,
   } = props;
 
   const dateFormat = 'YYYY-MM-DD';
   const timeFormat = 'HH:mm:ss';
-  console.log('modify : ', modify);
+
+  function handleDeleteClick(e) {
+    e.preventDefault();
+    // 여기다 구현해 주시면 됩니다!
+    history.push('/');
+  }
+
+
   return (
     <>
       <div className="bucketInfoDate">
@@ -90,14 +101,27 @@ export default function BucketInformations(props) {
         </div>
         <div className="forkbtn">
           <div className="center">
-            <span className="btnSpan">퍼가기</span>
-            {forkButton}
+            {isMyPage ? (
+              <>
+                <span className="btnSpan">삭제</span>
+                <Icon
+                  type="close"
+                  className="doneBtn_icon"
+                  onClick={handleDeleteClick}
+                ></Icon>
+              </>
+            ) : (
+              <>
+                <span className="btnSpan">퍼가기</span>
+                {forkButton}
+              </>
+            )}
           </div>
         </div>
         <div className="finishbtn">
           <div className="center">
             <span className="btnSpan">완료</span>
-            <Icon type="close" className="doneBtn_icon"></Icon>
+            <Icon type="clock-circle" className="doneBtn_icon"></Icon>
           </div>
         </div>
         <div className="updatebtn">
@@ -166,3 +190,5 @@ BucketInformations.propTypes = {
   isValidating: PropTypes.string,
   errorMessage: PropTypes.string,
 };
+
+export default withRouter(BucketInformations);

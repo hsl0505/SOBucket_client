@@ -25,6 +25,7 @@ class MyPage extends Component {
       isValidating: '',
       content: '',
       errorMessage: '',
+      isMyPage: false,
     };
     this.chooseBucket = this.chooseBucket.bind(this);
     this.chooseLikeBucket = this.chooseLikeBucket.bind(this);
@@ -70,6 +71,7 @@ class MyPage extends Component {
       if (id === bucketList[i].id) {
         this.setState({
           chosenBucket: bucketList[i],
+          isMyPage: true,
         });
         break;
       }
@@ -82,6 +84,7 @@ class MyPage extends Component {
       if (id === likeList[i].id) {
         this.setState({
           chosenBucket: likeList[i],
+          isMyPage: false,
         });
         break;
       }
@@ -219,10 +222,12 @@ class MyPage extends Component {
       bucketList,
       chosenBucket,
       likeList,
+
       modify,
       title,
       isValidating,
       errorMessage,
+      isMyPage,
     } = this.state;
 
     const {
@@ -238,7 +243,8 @@ class MyPage extends Component {
       handleContentOnChange,
     } = this;
 
-    const { homeBtnHandle, isLogin, history } = this.props;
+    const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
+
 
     if (!isLoaded) {
       return (
@@ -246,6 +252,7 @@ class MyPage extends Component {
           crumbMenu={['Home', 'Mypage']}
           isLogin="true"
           homeBtnHandle={homeBtnHandle}
+          loginHandle={loginHandle}
         >
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
             <Sider width={200} style={{ background: '#fff' }}>
@@ -263,6 +270,7 @@ class MyPage extends Component {
         crumbMenu={['Home', 'Mypage']}
         isLogin="true"
         homeBtnHandle={homeBtnHandle}
+        loginHandle={loginHandle}
       >
         <Layout style={{ padding: '24px 0', background: '#fff' }}>
           <Sider width={200} style={{ background: '#fff' }}>
@@ -320,6 +328,7 @@ class MyPage extends Component {
               {...chosenBucket}
               isLogin={isLogin}
               likeChangeHandle={this.likeChangeHandle}
+
               modify={modify}
               handleModify={handleModify} //
               modify={modify}
@@ -333,6 +342,7 @@ class MyPage extends Component {
               title={title}
               isValidating={isValidating}
               errorMessage={errorMessage}
+              isMyPage={isMyPage}
             />
           </Content>
         </Layout>
