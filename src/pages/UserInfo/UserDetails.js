@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { PageHeader, Button, Descriptions, Input } from 'antd';
 
 import Page from '../page';
+import UserUpdateModalButton from './UserUpdateModalButton';
 
 export default function UserDetails(props) {
   const {
@@ -25,12 +26,15 @@ export default function UserDetails(props) {
         title="User Information"
         subTitle={username}
         extra={[
-          <Button type="primary" size="large">
-            회원정보 변경
-          </Button>,
-          <Button type="primary" size="large" style={{ margin: '5px' }}>
-            탈퇴
-          </Button>,
+          <UserUpdateModalButton
+            email={email}
+            nickname={userNickName}
+            phone={phone}
+          >
+            <Button type="primary" size="large" style={{ margin: '5px' }}>
+              탈퇴
+            </Button>
+          </UserUpdateModalButton>,
         ]}
       >
         <Descriptions title="User Info" bordered>

@@ -32,23 +32,19 @@ export default class UserInfo extends Component {
     fetch('http://localhost:3001/user/info', {
       method: 'GET',
     }).then(response => {
+      // console.log(body.);
+
       const reader = response.body.getReader();
       let charsReceived = 0;
 
-      // read() returns a promise that resolves
-      // when a value has been received
-      reader.read().then(({ done, value }) => {
-        // Result objects contain two properties:
-        // done  - true if the stream has already given you all its data.
-        // value - some data. Always undefined when done is true.
-        if (done) {
-          console.log('Stream complete');
-          para.textContent = value;
-          return;
-        }
+      reader.read('avatar').then(({ done, value }) => {
+        // if (done) {
+        //   console.log('Stream complete');
+        //   para.textContent = value;
+        //   return;
+        // }
 
         console.log(value);
-        console.log(value.buffer);
         return value;
       });
     });
