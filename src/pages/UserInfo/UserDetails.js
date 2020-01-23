@@ -15,6 +15,7 @@ export default function UserDetails(props) {
     createdAt,
     handleFileInput,
     handlePost,
+    handleRerender,
     isLogin,
     loginHandle,
     homeBtnHandle,
@@ -38,11 +39,12 @@ export default function UserDetails(props) {
             email={email}
             nickname={userNickName}
             phone={phone}
+            handleRerender={handleRerender}
           >
             <Button type="primary" size="large" style={{ margin: '5px' }}>
               탈퇴
             </Button>
-          </UserUpdateModalButton>
+          </UserUpdateModalButton>,
         ]}
       >
         <Descriptions title="User Info" bordered>
@@ -83,11 +85,12 @@ UserDetails.defaultProps = {
   phone: '',
   avatar: '',
   createdAt: '',
-  handleFileInput: '',
-  handlePost: '',
+  handleFileInput: () => {},
+  handlePost: () => {},
   isLogin: false,
   loginHandle: () => {},
   homeBtnHandle: () => {},
+  handleRerender: () => {},
 };
 
 UserDetails.propTypes = {
@@ -102,4 +105,5 @@ UserDetails.propTypes = {
   isLogin: PropTypes.bool,
   loginHandle: PropTypes.func,
   homeBtnHandle: PropTypes.func,
+  handleRerender: PropTypes.func,
 };

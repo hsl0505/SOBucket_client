@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import UserDetails from './UserDetails';
 
+import { Skeleton } from 'antd';
+
 export default class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -11,15 +13,38 @@ export default class UserInfo extends Component {
       userNickName: '현성3',
       phone: '3-3-3',
       avatar: '',
+      isLoaded: false,
       createdAt: '2020-01-21 00:59:36',
       selectedFile: '',
     };
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
+    this.handleRerender = this.handleRerender.bind(this);
   }
 
   componentDidMount() {
+    fetch('http://127.0.0.1:3001/user/info', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(response => {
+        console.log(response);
+        this.setState({
+          isLoaded: true,
+          email: response.email,
+          username: response.userName,
+          userNickName: response.userNickName,
+          phone: response.phone,
+          avatar: response.avatar,
+          createdAt: response.createdAt,
+        });
+      });
+  }
+
+  handleRerender() {
+    this.setState({ isLoaded: false });
     fetch('http://127.0.0.1:3001/user/info', {
       method: 'GET',
       credentials: 'include',
@@ -34,18 +59,9 @@ export default class UserInfo extends Component {
           phone: response.phone,
           avatar: response.avatar,
           createdAt: response.createdAt,
+          isLoaded: true,
         });
       });
-  }
-
-  handleChangeInput(data) {
-    // this.setState({
-    //   email: data.email,
-    //   username: data.username,
-    //   userNickName: data.userNickName,
-    //   phone: data.phone,
-    // });
-    this.setState({ ...data });
   }
   //   handleSubmit() {}
 
@@ -74,6 +90,7 @@ export default class UserInfo extends Component {
 
   render() {
     const {
+      isLoaded,
       email,
       username,
       userNickName,
@@ -83,6 +100,14 @@ export default class UserInfo extends Component {
       selectedFile,
     } = this.state;
     const { isLogin, loginHandle, homeBtnHandle } = this.props;
+
+    if (!isLoaded) {
+      return (
+        <div>
+          <Skeleton />
+        </div>
+      );
+    }
     return (
       <div>
         <UserDetails
@@ -95,6 +120,7 @@ export default class UserInfo extends Component {
           selectedFile={selectedFile}
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
+          handleRerender={this.handleRerender}
           isLogin={isLogin}
           loginHandle={loginHandle}
           homeBtnHandle={homeBtnHandle}
