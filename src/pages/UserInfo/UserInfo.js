@@ -29,33 +29,15 @@ export default class UserInfo extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/user/info', {
-      method: 'GET',
-    }).then(response => {
-      // console.log(body.);
-
-      const reader = response.body.getReader();
-      let charsReceived = 0;
-
-      reader.read('avatar').then(({ done, value }) => {
-        // if (done) {
-        //   console.log('Stream complete');
-        //   para.textContent = value;
-        //   return;
-        // }
-
-        console.log(value);
-        return value;
-      });
-    });
+    // ddd
   }
 
   //   handleSubmit() {}
 
   handleFileInput(e) {
-    this.setState = {
+    this.setState({
       selectedFile: e.target.files[0],
-    };
+    });
   }
 
   handlePost() {
@@ -97,6 +79,7 @@ export default class UserInfo extends Component {
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
           isLogin={isLogin}
+          handleChangeInput={han}
         />
       </div>
     );
