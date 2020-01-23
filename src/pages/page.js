@@ -61,17 +61,27 @@ function Page(props) {
               <LoginModalDiv loginHandle={loginHandle} />
             </Menu.Item>
           )}
-          <Menu.Item
-            key="3"
-            onClick={() => {
-              if (isSignUpPage !== 'true') {
-                history.push('/signup');
-              }
-            }}
-            style={{ visibility: isLogin ? 'hidden' : 'visible' }}
-          >
-            SignUp
-          </Menu.Item>
+          {isLogin ? (
+            <Menu.Item
+              key="3"
+              onClick={() => {
+                history.push('/userinfo');
+              }}
+            >
+              UserInfo
+            </Menu.Item>
+          ) : (
+            <Menu.Item
+              key="3"
+              onClick={() => {
+                if (isSignUpPage !== 'true') {
+                  history.push('/signup');
+                }
+              }}
+            >
+              SignUp
+            </Menu.Item>
+          )}
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px', marginTop: 64 }}>
