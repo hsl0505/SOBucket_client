@@ -16,9 +16,16 @@ export default function UserDetails(props) {
     handleFileInput,
     handlePost,
     isLogin,
+    loginHandle,
+    homeBtnHandle,
   } = props;
   return (
-    <Page crumbMenu={['Home', 'Mypage', 'UserInfo']} isLogin={isLogin}>
+    <Page
+      crumbMenu={['Home', 'Mypage', 'UserInfo']}
+      isLogin={isLogin}
+      loginHandle={loginHandle}
+      homeBtnHandle={homeBtnHandle}
+    >
       <PageHeader
         style={{
           border: '1px solid rgb(235, 237, 240)',
@@ -35,7 +42,7 @@ export default function UserDetails(props) {
             <Button type="primary" size="large" style={{ margin: '5px' }}>
               탈퇴
             </Button>
-          </UserUpdateModalButton>,
+          </UserUpdateModalButton>
         ]}
       >
         <Descriptions title="User Info" bordered>
@@ -79,6 +86,8 @@ UserDetails.defaultProps = {
   handleFileInput: '',
   handlePost: '',
   isLogin: false,
+  loginHandle: () => {},
+  homeBtnHandle: () => {},
 };
 
 UserDetails.propTypes = {
@@ -91,4 +100,6 @@ UserDetails.propTypes = {
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
   isLogin: PropTypes.bool,
+  loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
 };

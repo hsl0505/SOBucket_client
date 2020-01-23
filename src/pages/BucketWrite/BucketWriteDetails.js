@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -20,11 +21,20 @@ function BucketWriteDetails(props) {
     // expectedDate,
     isValidating,
     errorMessage,
+    isLogin,
+    loginHandle,
+    homeBtnHandle,
   } = props;
   const dateFormat = 'YYYY-MM-DD';
   const timeFormat = 'HH:mm:ss';
   return (
-    <Page crumbMenu={['Home', 'bucket', 'create']} isSignUpPage="true">
+    <Page
+      crumbMenu={['Home', 'bucket', 'create']}
+      isSignUpPage="true"
+      isLogin={isLogin}
+      loginHandle={loginHandle}
+      homeBtnHandle={homeBtnHandle}
+    >
       <div className="bucketInfoDate">
         <div className="center">
           <div className="expectedDate">
@@ -101,6 +111,8 @@ BucketWriteDetails.defaultProps = {
   handleOnChange: () => {},
   handleDateChange: () => {},
   handleTimeChange: () => {},
+  loginHandle: () => {},
+  homeBtnHandle: () => {},
   title: '',
   content: '',
   image: '',
@@ -108,6 +120,7 @@ BucketWriteDetails.defaultProps = {
   isValidating: '',
   errorMessage: '',
   history: '',
+  isLogin: false,
 };
 
 BucketWriteDetails.propTypes = {
@@ -117,6 +130,8 @@ BucketWriteDetails.propTypes = {
   handleOnChange: PropTypes.func,
   handleDateChange: PropTypes.func,
   handleTimeChange: PropTypes.func,
+  loginHandle: PropTypes.func,
+  homeBtnHandle: PropTypes.func,
   title: PropTypes.string,
   content: PropTypes.string,
   image: PropTypes.string,
@@ -124,4 +139,5 @@ BucketWriteDetails.propTypes = {
   isValidating: PropTypes.string,
   errorMessage: PropTypes.string,
   history: PropTypes.any,
+  isLogin: PropTypes.bool,
 };

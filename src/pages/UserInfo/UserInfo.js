@@ -10,12 +10,32 @@ export default class UserInfo extends Component {
       username: '임현성3',
       userNickName: '현성3',
       phone: '3-3-3',
+      avatar: '',
       createdAt: '2020-01-21 00:59:36',
       selectedFile: '',
     };
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handlePost = this.handlePost.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:3001/user/info', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(response => {
+        console.log(response);
+        this.setState({
+          email: response.email,
+          username: response.userName,
+          userNickName: response.userNickName,
+          phone: response.phone,
+          avatar: response.avatar,
+          createdAt: response.createdAt,
+        });
+      });
   }
 
   handleChangeInput(data) {
@@ -27,11 +47,6 @@ export default class UserInfo extends Component {
     // });
     this.setState({ ...data });
   }
-
-  componentDidMount() {
-    // ddd
-  }
-
   //   handleSubmit() {}
 
   handleFileInput(e) {
@@ -63,10 +78,11 @@ export default class UserInfo extends Component {
       username,
       userNickName,
       phone,
+      avatar,
       createdAt,
       selectedFile,
     } = this.state;
-    const { isLogin } = this.props;
+    const { isLogin, loginHandle, homeBtnHandle } = this.props;
     return (
       <div>
         <UserDetails
@@ -74,12 +90,14 @@ export default class UserInfo extends Component {
           username={username}
           userNickName={userNickName}
           phone={phone}
+          avatar={avatar}
           createdAt={createdAt}
           selectedFile={selectedFile}
           handleFileInput={this.handleFileInput}
           handlePost={this.handlePost}
           isLogin={isLogin}
-          handleChangeInput={han}
+          loginHandle={loginHandle}
+          homeBtnHandle={homeBtnHandle}
         />
       </div>
     );
