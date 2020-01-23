@@ -23,6 +23,17 @@ export default function BucketDetails(props) {
     isLogin,
     mylike,
     likeChangeHandle,
+    handleModify,
+    modify,
+    handleFileInput,
+    handlePost,
+    handleSubmit,
+    handleOnChange,
+    handleDateChange,
+    handleTimeChange,
+    handleContentOnChange,
+    isValidating,
+    errorMessage,
   } = props;
 
   const { userNickName, avatar } = user;
@@ -85,6 +96,18 @@ export default function BucketDetails(props) {
           content={content}
           likeButton={likeButton}
           forkButton={forkButton}
+          handleModify={handleModify}
+          modify={modify}
+          handleFileInput={handleFileInput}
+          handlePost={handlePost}
+          handleSubmit={handleSubmit}
+          handleOnChange={handleOnChange}
+          handleDateChange={handleDateChange}
+          handleTimeChange={handleTimeChange}
+          handleContentOnChange={handleContentOnChange}
+          title={title}
+          isValidating={isValidating}
+          errorMessage={errorMessage}
         />
         <RelatedInfos />
         <BucketReview />
@@ -96,7 +119,7 @@ export default function BucketDetails(props) {
 BucketDetails.defaultProps = {
   id: 0,
   title: 'title',
-  image: 'image',
+  image: '',
   content: 'content',
   likeCount: 0,
   expectedDate: new Date().toISOString(),
@@ -105,6 +128,17 @@ BucketDetails.defaultProps = {
   isLogin: false,
   mylike: false,
   likeChangeHandle: () => {},
+  handleModify: () => {},
+  modify: false,
+  handleFileInput: () => {},
+  handlePost: () => {},
+  handleSubmit: () => {},
+  handleOnChange: () => {},
+  handleDateChange: () => {},
+  handleTimeChange: () => {},
+  handleContentOnChange: () => {},
+  isValidating: '',
+  errorMessage: '',
 };
 
 BucketDetails.propTypes = {
@@ -122,4 +156,15 @@ BucketDetails.propTypes = {
   }),
   mylike: PropTypes.bool,
   likeChangeHandle: PropTypes.func,
+  handleModify: PropTypes.func,
+  modify: PropTypes.bool,
+  handleFileInput: PropTypes.func,
+  handlePost: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  handleOnChange: PropTypes.func,
+  handleDateChange: PropTypes.func,
+  handleTimeChange: PropTypes.func,
+  handleContentOnChange: PropTypes.func,
+  isValidating: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
