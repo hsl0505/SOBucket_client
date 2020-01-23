@@ -29,10 +29,10 @@ export default function BucketDetails(props) {
     handleFileInput,
     handlePost,
     handleSubmit,
-    handleOnChange,
     handleDateChange,
     handleTimeChange,
     handleContentOnChange,
+    handleTitleOnChange,
     isValidating,
     errorMessage,
   } = props;
@@ -92,6 +92,7 @@ export default function BucketDetails(props) {
         }}
       >
         <BucketInformations
+          id={id}
           userId={user_id}
           expectedDate={expectedDate}
           image={image}
@@ -103,15 +104,14 @@ export default function BucketDetails(props) {
           handleFileInput={handleFileInput}
           handlePost={handlePost}
           handleSubmit={handleSubmit}
-          handleOnChange={handleOnChange}
           handleDateChange={handleDateChange}
           handleTimeChange={handleTimeChange}
           handleContentOnChange={handleContentOnChange}
+          handleTitleOnChange={handleTitleOnChange}
           title={title}
           isValidating={isValidating}
           errorMessage={errorMessage}
           isMyPage={isMyPage}
-
         />
         <RelatedInfos />
         <BucketReview />
@@ -141,10 +141,10 @@ BucketDetails.defaultProps = {
   handleFileInput: () => {},
   handlePost: () => {},
   handleSubmit: () => {},
-  handleOnChange: () => {},
   handleDateChange: () => {},
   handleTimeChange: () => {},
   handleContentOnChange: () => {},
+  handleTitleOnChange: () => {},
   isValidating: '',
   errorMessage: '',
 };
@@ -167,10 +167,10 @@ BucketDetails.propTypes = {
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
   handleSubmit: PropTypes.func,
-  handleOnChange: PropTypes.func,
   handleDateChange: PropTypes.func,
   handleTimeChange: PropTypes.func,
   handleContentOnChange: PropTypes.func,
+  handleTitleOnChange: PropTypes.func,
   isValidating: PropTypes.string,
   errorMessage: PropTypes.string,
 };

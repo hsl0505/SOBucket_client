@@ -48,6 +48,7 @@ export default class BucketUpdateModalButton extends React.Component {
       handleDateChange,
       handleTimeChange,
       handleContentOnChange,
+      handleTitleOnChange,
       title,
       isValidating,
       errorMessage,
@@ -67,6 +68,7 @@ export default class BucketUpdateModalButton extends React.Component {
           handleDateChange={handleDateChange}
           handleTimeChange={handleTimeChange}
           handleContentOnChange={handleContentOnChange}
+          handleTitleOnChange={handleTitleOnChange}
           title={title}
           isValidating={isValidating}
           errorMessage={errorMessage}
@@ -80,12 +82,10 @@ export default class BucketUpdateModalButton extends React.Component {
 }
 
 BucketUpdateModalButton.defaultProps = {
+  id: 0,
   image: '',
   expectedDate: new Date(),
-  user_id: 0,
   content: 'content',
-  modify: false,
-  handleModify: () => {},
   handleFileInput: () => {},
   handlePost: () => {},
   handleSubmit: () => {},
@@ -93,18 +93,17 @@ BucketUpdateModalButton.defaultProps = {
   handleDateChange: () => {},
   handleTimeChange: () => {},
   handleContentOnChange: () => {},
+  handleTitleOnChange: () => {},
   title: '',
   isValidating: '',
   errorMessage: '',
 };
 
 BucketUpdateModalButton.propTypes = {
+  id: PropTypes.number,
   image: PropTypes.string,
   expectedDate: PropTypes.string,
-  user_id: PropTypes.number,
   content: PropTypes.string,
-  modify: PropTypes.bool,
-  handleModify: PropTypes.func,
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
   handleSubmit: PropTypes.func,
@@ -112,6 +111,7 @@ BucketUpdateModalButton.propTypes = {
   handleDateChange: PropTypes.func,
   handleTimeChange: PropTypes.func,
   handleContentOnChange: PropTypes.func,
+  handleTitleOnChange: PropTypes.func,
   title: PropTypes.string,
   isValidating: PropTypes.string,
   errorMessage: PropTypes.string,
