@@ -20,7 +20,7 @@ class MyPage extends Component {
       likeList: [],
       likeFetch: false,
       modify: false,
-      title: '',
+      // title: '',
       image: '',
       isValidating: '',
       content: '',
@@ -245,7 +245,6 @@ class MyPage extends Component {
 
     const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
 
-
     if (!isLoaded) {
       return (
         <Page
@@ -328,7 +327,6 @@ class MyPage extends Component {
               {...chosenBucket}
               isLogin={isLogin}
               likeChangeHandle={this.likeChangeHandle}
-
               modify={modify}
               handleModify={handleModify} //
               modify={modify}
@@ -339,7 +337,7 @@ class MyPage extends Component {
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
               handleContentOnChange={handleContentOnChange}
-              title={title}
+              // title={title}
               isValidating={isValidating}
               errorMessage={errorMessage}
               isMyPage={isMyPage}
