@@ -10,6 +10,7 @@ export default function UserDetails(props) {
     username,
     userNickName,
     phone,
+    avatar,
     createdAt,
     handleFileInput,
     handlePost,
@@ -32,10 +33,10 @@ export default function UserDetails(props) {
         title="User Information"
         subTitle={username}
         extra={[
-          <Button type="primary" size="large">
+          <Button type="primary" size="large" key={1}>
             회원정보 변경
           </Button>,
-          <Button type="primary" size="large" style={{ margin: '5px' }}>
+          <Button type="primary" size="large" style={{ margin: '5px' }} key={2}>
             탈퇴
           </Button>,
         ]}
@@ -52,10 +53,7 @@ export default function UserDetails(props) {
           <Descriptions.Item label="SignupDate">{createdAt}</Descriptions.Item>
 
           <Descriptions.Item label="Profile">
-            <img
-              alt="profile"
-              src="https://api.adorable.io/avatars/150/test.png"
-            />
+            <img alt="profile" src={avatar} />
           </Descriptions.Item>
           <Descriptions.Item label="Profile Change" span={2}>
             <Input type="file" name="file" onChange={handleFileInput} />
@@ -79,6 +77,7 @@ UserDetails.defaultProps = {
   username: '',
   userNickName: '',
   phone: '',
+  avatar: '',
   createdAt: '',
   handleFileInput: '',
   handlePost: '',
@@ -92,6 +91,7 @@ UserDetails.propTypes = {
   username: PropTypes.string,
   userNickName: PropTypes.string,
   phone: PropTypes.string,
+  avatar: PropTypes.string,
   createdAt: PropTypes.string,
   handleFileInput: PropTypes.func,
   handlePost: PropTypes.func,
