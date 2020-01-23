@@ -1,11 +1,13 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { PageHeader, Button, Descriptions, Input } from 'antd';
 
 import Page from '../page';
 import UserUpdateModalButton from './UserUpdateModalButton';
 
-export default function UserDetails(props) {
+function UserDetails(props) {
   const {
     email,
     username,
@@ -19,7 +21,25 @@ export default function UserDetails(props) {
     isLogin,
     loginHandle,
     homeBtnHandle,
+    history,
   } = props;
+
+  function resignHandle() {
+    fetch('http://127.0.0.1:3001/user/resign', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    }).then(result => {
+      console.log(result);
+      alert('탈퇴 되었습니다');
+      loginHandle();
+      history.replace('/');
+    });
+  }
+
   return (
     <Page
       crumbMenu={['Home', 'Mypage', 'UserInfo']}
@@ -41,7 +61,12 @@ export default function UserDetails(props) {
             phone={phone}
             handleRerender={handleRerender}
           >
-            <Button type="primary" size="large" style={{ margin: '5px' }}>
+            <Button
+              type="primary"
+              size="large"
+              style={{ margin: '5px' }}
+              onClick={resignHandle}
+            >
               탈퇴
             </Button>
           </UserUpdateModalButton>,
@@ -91,6 +116,7 @@ UserDetails.defaultProps = {
   loginHandle: () => {},
   homeBtnHandle: () => {},
   handleRerender: () => {},
+  history: '',
 };
 
 UserDetails.propTypes = {
@@ -106,4 +132,7 @@ UserDetails.propTypes = {
   loginHandle: PropTypes.func,
   homeBtnHandle: PropTypes.func,
   handleRerender: PropTypes.func,
+  history: PropTypes.any,
 };
+
+export default withRouter(UserDetails);
