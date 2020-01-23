@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Modal, Form, Input } from 'antd';
 
-class LoginModal extends React.Component {
+class UserUpdateModal extends React.Component {
   constructor(props) {
     super(props);
     const { email, nickname, phone } = this.props;
@@ -28,47 +28,37 @@ class LoginModal extends React.Component {
   handleSubmitClick(e) {
     console.log(e);
     this.setState({ isValidating: 'validating' });
-    const { hideModal, loginHandle, history } = this.props;
-    const { emailValue, usernameValue } = this.state;
-    console.log({
-      email: emailValue,
-      username: usernameValue,
-    });
-    window
-      .fetch('http://127.0.0.1:3001/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: emailValue,
-          username: usernameValue,
-        }),
-        credentials: 'include',
-      })
-      .then(result => result.json())
-      .then(data => {
-        console.log('data', data);
-        if (data.id !== undefined) {
-          this.setState({
-            isValidating: 'success',
-          });
+    const { hideModal, history } = this.props;
+    const { emailValue, nicknameValue, phoneValue } = this.state;
+    fetch('http://127.0.0.1:3001/user/info', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: emailValue,
+        userNickName: nicknameValue,
+        phone: phoneValue,
+      }),
+      credentials: 'include',
+    })
+      .then(result => {
+        console.log(result);
+        if (result) {
+          this.setState({ isValidating: 'success' });
           hideModal();
-          localStorage.setItem('isLogin', 'true');
-          localStorage.setItem('userNickName', `${data.userNickName}`);
-          loginHandle(data.userNickName);
-          history.replace('/');
+          history.replace('/userinfo');
         } else {
           this.setState({
-            errorMessage: '실패했습니다',
-            isValidating: 'error',
+            isValidating: 'warning',
+            errorMessage: '실패하였습니다',
           });
         }
       })
       .catch(error => {
         this.setState({
-          errorMessage: error.toString(),
           isValidating: 'error',
+          errorMessage: error.toString(),
         });
       });
   }
@@ -124,26 +114,24 @@ class LoginModal extends React.Component {
   }
 }
 
-LoginModal.defaultProps = {
+UserUpdateModal.defaultProps = {
   visible: false,
   hideModal: () => {},
   handleCancel: () => {},
-  loginHandle: () => {},
   history: '',
   email: '',
   nickname: '',
   phone: '',
 };
 
-LoginModal.propTypes = {
+UserUpdateModal.propTypes = {
   visible: PropTypes.bool,
   hideModal: PropTypes.func,
   handleCancel: PropTypes.func,
-  loginHandle: PropTypes.func,
   history: PropTypes.any,
   email: PropTypes.string,
   nickname: PropTypes.string,
   phone: PropTypes.string,
 };
 
-export default withRouter(LoginModal);
+export default withRouter(UserUpdateModal);
