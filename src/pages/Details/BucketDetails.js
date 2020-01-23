@@ -49,6 +49,7 @@ export default function BucketDetails(props) {
         content,
         expectedDate,
       }}
+      likeChangeHandle={likeChangeHandle}
     />
   );
 
