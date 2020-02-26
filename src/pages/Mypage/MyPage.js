@@ -217,6 +217,7 @@ class MyPage extends Component {
   }
 
   render() {
+<<<<<<< Updated upstream
     const {
       isLoaded,
       bucketList,
@@ -243,6 +244,11 @@ class MyPage extends Component {
 
     const { homeBtnHandle, isLogin, history, loginHandle } = this.props;
 
+=======
+    const { isLoaded, bucketList, chosenBucket, likeList } = this.state;
+    const { chooseBucket, chooseLikeBucket } = this;
+    const { homeBtnHandle, isLogin, loginHandle } = this.props;
+>>>>>>> Stashed changes
     if (!isLoaded) {
       return (
         <Page
