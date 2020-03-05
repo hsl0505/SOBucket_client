@@ -246,8 +246,8 @@ class MyPage extends Component {
         <Page
           crumbMenu={['Home', 'Mypage']}
           isLogin="true"
-          homeBtnHandle={homeBtnHandle}
-          loginHandle={loginHandle}
+          // homeBtnHandle={homeBtnHandle}
+          // loginHandle={loginHandle}
         >
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
             <Sider width={200} style={{ background: '#fff' }}>
@@ -264,8 +264,8 @@ class MyPage extends Component {
       <Page
         crumbMenu={['Home', 'Mypage']}
         isLogin="true"
-        homeBtnHandle={homeBtnHandle}
-        loginHandle={loginHandle}
+        // homeBtnHandle={homeBtnHandle}
+        // loginHandle={loginHandle}
       >
         <Layout style={{ padding: '24px 0', background: '#fff' }}>
           <Sider width={200} style={{ background: '#fff' }}>
@@ -316,7 +316,7 @@ class MyPage extends Component {
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
             <BucketDetails
               {...chosenBucket}
-              isLogin={isLogin}
+              // isLogin={isLogin}
               likeChangeHandle={this.likeChangeHandle}
               modify={modify}
               handleModify={handleModify} //
