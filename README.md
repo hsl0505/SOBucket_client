@@ -139,6 +139,7 @@ SO Bucket Client
 - 좋아요 / 퍼가기 버튼 누를 경우 Alert message(로그인 요청)
 
 </br>
+</br>
 
 **#홈 화면 (로그인 시)**
 
@@ -152,8 +153,25 @@ SO Bucket Client
 - 과거에 좋아요 눌렀던 bucket의 경우, 좋아요 눌러진 상태로 렌더링
 
 </br>
+</br>
 
 **# 검색 화면**
+
+<img src="https://user-images.githubusercontent.com/53073832/76165940-5232a800-619e-11ea-8463-a487d166f169.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76165946-565ec580-619e-11ea-8081-7ccbce6c5fef.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76165948-56f75c00-619e-11ea-9a0e-2a84ee1bd977.png" height="200" width="400" >
+</br>
+
+- Bucket title로 검색
+- 일치하는 결과가 없을 시 / 일치하는 bucket이 있을 시
+
+</br>
+</br>
+
+
+
 
 
 
