@@ -170,6 +170,22 @@ SO Bucket Client
 </br>
 </br>
 
+**# 좋아요**
+
+<img src="https://user-images.githubusercontent.com/53073832/76166269-b6566b80-61a0-11ea-85b6-b710c6930448.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76166271-b8202f00-61a0-11ea-94be-17bd88845820.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76166273-b8b8c580-61a0-11ea-8137-1a0469e79e8e.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76166275-b9e9f280-61a0-11ea-8a0c-2b82f68ca735.png" height="200" width="400" >
+</br>
+
+
+- 좋아요 토글 기능 (누를 시 좋아요 +1 및 활성 / 다시 누르면 좋아요 -1 및 비활성)
+- hover시 scale up
+- 재사용 가능한 컴포넌트로 만들어 홈 화면, 검색화면 및 mypage와 detail 에서도 사용
+
 
 
 
