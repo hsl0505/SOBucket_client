@@ -33,8 +33,9 @@
 
 **SO Bucket 주요 기능**
 
-- 로그인 / 로그아웃 / 회원가입
-- Bucket 등록 / 삭제
+- 로그인 / 로그아웃 / 회원가입 / 회원탈퇴
+- 회원정보 열람 / 수정
+- Bucket 등록 / 수정 / 삭제
 - Bucket 검색 (title로)
 - Bucket 좋아요 / 퍼가기
 
@@ -201,9 +202,22 @@ SO Bucket Client
 </br>
 </br>
 
+**# My page**
+
+<img src="https://user-images.githubusercontent.com/53073832/76170686-9edea900-61c7-11ea-9ee5-4726e6c2e2ac.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76170687-a00fd600-61c7-11ea-99d7-9dcd3169c196.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76170689-a2723000-61c7-11ea-864e-cfa858572bab.png" height="200" width="400" >
+</br>
 
 
+- 내 버킷 리스트 
+- 내가 좋아요 누른 버킷 리스트
+- mypage 및 버킷 detail에서도 좋아요 / 퍼가기 가능
 
+</br>
+</br>
 
 
 
