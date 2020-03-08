@@ -120,7 +120,8 @@ SO Bucket Client
 
 ### Features
 ---
-**# 홈 화면 (비로그인)**
+
+**# 홈 화면 (비로그인 시)**
 
 <img src="https://user-images.githubusercontent.com/53073832/76164351-8c497d00-6191-11ea-8d7c-9ed5f1f92818.png" height="200" width="400" >
 </br>
@@ -131,13 +132,28 @@ SO Bucket Client
 <img src="https://user-images.githubusercontent.com/53073832/76164355-923f5e00-6191-11ea-8e16-25954c7be5a1.png" height="200" width="400" >
 </br>
 
-- Search bar, Nav bar (홈 버튼 등), Main img, Buckets (랜덤 bucket 8개), Best Buckets (좋아요 순 4개)로 레이아웃 구성
-- Bucket 검색 가능
-- 비로그인 시 좋아요 / 퍼가기 버튼 누를 경우 Alert message(로그인 요청)
+- Search bar, Nav bar, Main img, Buckets, Best Buckets로 레이아웃 구성
+- 비로그인 시에도 Bucket 검색 가능
+- 홈 화면 진입 시 main img text opacity transition
+- Bucket 클릭 시 detail로 이동
+- 좋아요 / 퍼가기 버튼 누를 경우 Alert message(로그인 요청)
 
 </br>
 
+**#홈 화면 (로그인 시)**
 
+<img src="https://user-images.githubusercontent.com/53073832/76165604-c029a000-619b-11ea-8f7c-1b6d5ce0c03c.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76165607-c455bd80-619b-11ea-81dc-b3335780e467.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76165609-c6b81780-619b-11ea-8484-f7b25fb646e4.png" height="200" width="400" >
+</br>
+
+- 과거에 좋아요 눌렀던 bucket의 경우, 좋아요 눌러진 상태로 렌더링
+
+</br>
+
+**# 검색 화면**
 
 
 
