@@ -34,7 +34,7 @@
 **SO Bucket 주요 기능**
 
 - 로그인 / 로그아웃 / 회원가입
-- Bucket 등록
+- Bucket 등록 / 삭제
 - Bucket 검색 (title로)
 - Bucket 좋아요 / 퍼가기
 
@@ -133,9 +133,9 @@ SO Bucket Client
 </br>
 
 - Search bar, Nav bar, Main img, Buckets, Best Buckets로 레이아웃 구성
-- 비로그인 시에도 Bucket 검색 가능
+- 비로그인 시에도 버킷 검색 가능
 - 홈 화면 진입 시 main img text opacity transition
-- Bucket 클릭 시 detail로 이동
+- 버킷 클릭 시 detail로 이동
 - 좋아요 / 퍼가기 버튼 누를 경우 Alert message(로그인 요청)
 
 </br>
@@ -150,7 +150,7 @@ SO Bucket Client
 <img src="https://user-images.githubusercontent.com/53073832/76165609-c6b81780-619b-11ea-8484-f7b25fb646e4.png" height="200" width="400" >
 </br>
 
-- 과거에 좋아요 눌렀던 bucket의 경우, 좋아요 눌러진 상태로 렌더링
+- 과거에 좋아요 눌렀던 버킷의 경우, 좋아요 눌러진 상태로 렌더링
 
 </br>
 </br>
@@ -164,8 +164,8 @@ SO Bucket Client
 <img src="https://user-images.githubusercontent.com/53073832/76165948-56f75c00-619e-11ea-9a0e-2a84ee1bd977.png" height="200" width="400" >
 </br>
 
-- Bucket title로 검색
-- 일치하는 결과가 없을 시 / 일치하는 bucket이 있을 시
+- 버킷 제목으로 검색
+- 일치하는 버킷 없을 시 / 일치하는 버킷 있을 시
 
 </br>
 </br>
@@ -185,6 +185,21 @@ SO Bucket Client
 - 좋아요 토글 기능 (누를 시 좋아요 +1 및 활성 / 다시 누르면 좋아요 -1 및 비활성)
 - hover시 scale up
 - 재사용 가능한 컴포넌트로 만들어 홈 화면, 검색화면 및 mypage와 detail 에서도 사용
+
+</br>
+</br>
+
+**# 퍼가기**
+
+<img src="https://user-images.githubusercontent.com/53073832/76168739-c6c51100-61b5-11ea-904f-761c86e41bca.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76168740-c9c00180-61b5-11ea-89af-63816bf507d8.png" height="200" width="400" >
+</br>
+
+- 퍼가기 버튼 클릭 시 자신의 버킷리스트에 해당 버킷 추가
+
+</br>
+</br>
 
 
 
