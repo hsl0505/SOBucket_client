@@ -120,6 +120,28 @@ SO Bucket Client
 
 ### Features
 ---
+**# 홈 화면 (비로그인)**
+
+<img src="https://user-images.githubusercontent.com/53073832/76164351-8c497d00-6191-11ea-8d7c-9ed5f1f92818.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76164353-8fdd0400-6191-11ea-95b7-6d743342095f.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76164354-91a6c780-6191-11ea-8c44-5cd91753d215.png" height="200" width="400" >
+</br>
+<img src="https://user-images.githubusercontent.com/53073832/76164355-923f5e00-6191-11ea-8e16-25954c7be5a1.png" height="200" width="400" >
+</br>
+
+- Search bar, Nav bar (홈 버튼 등), Main img, Buckets (랜덤 bucket 8개), Best Buckets (좋아요 순 4개)로 레이아웃 구성
+- Bucket 검색 가능
+- 비로그인 시 좋아요 / 퍼가기 버튼 누를 경우 Alert message(로그인 요청)
+
+</br>
+
+
+
+
+
+
 
 
 
