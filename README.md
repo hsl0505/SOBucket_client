@@ -87,7 +87,7 @@
 </br>
 </br>
 
-# Front-End (내가 구현한 부분)
+# Front-End
 
 ### Directory Structure
 ```
@@ -119,7 +119,7 @@ SO Bucket Client
 ```
 </br>
 
-### Features
+### Features (내가 구현한 부분)
 ---
 
 **# 홈 화면 (비로그인 시)**
