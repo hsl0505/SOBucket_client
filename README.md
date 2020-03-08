@@ -84,6 +84,42 @@
 ![버킷 아키텍쳐](https://user-images.githubusercontent.com/53073832/76164225-8dc67580-6190-11ea-9645-921649992c22.png)
 
 </br>
+</br>
+
+# Front-End (내가 구현한 부분)
+
+### Directory Structure
+```
+SO Bucket Client
+├── README.md
+├── package.json
+├── public
+│   └── index.html
+└── src
+    ├── App.js
+    ├── css
+    │   ├── Details
+    │   ├── Home
+    │   ├── SearchResult
+    │   └── index.css
+    ├── img
+    ├── index.js
+    └── pages
+        ├── BucketWrite
+        ├── Details
+        ├── Home
+        ├── Login
+        ├── Mypage
+        ├── SearchResult
+        ├── SignUp
+        ├── UserInfo
+        └── page.js
+
+```
+</br>
+
+### Features
+---
 
 
 
