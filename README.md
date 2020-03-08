@@ -33,4 +33,57 @@
 
 **SO Bucket 주요 기능**
 
-    
+- 로그인 / 로그아웃 / 회원가입
+- Bucket 등록
+- Bucket 검색 (title로)
+- Bucket 좋아요 / 퍼가기
+
+</br>
+
+### 프로젝트 관리
+
+- Notion을 이용하여 프로젝트 전반적인 기획 및 관리
+
+  - team rule, step, task, api 문서 등
+
+- Miro를 이용하여 프로젝트 전체 레이아웃 설계
+
+- dbdiagram.io를 이용하여 데이터베이스 설계
+
+- 애자일 스크럼 방식을 이용하여 스프린트 단위의 개발 진행관리
+
+- ESLint, Prettier를 이용하여 코드 스타일 통일
+
+</br>
+
+### 사용한 기술 스택
+
+**Front-End**
+
+- React
+- React-router-dom
+- Ant
+
+**Back-End**
+
+- Node.js
+- Express
+- JWT
+- MySQL
+- Sequelize ORM
+
+**Development**
+
+- Git
+- AWS (S3)
+
+</br>
+
+### 프로젝트 아키텍쳐
+
+![버킷 아키텍쳐](https://user-images.githubusercontent.com/53073832/76164225-8dc67580-6190-11ea-9645-921649992c22.png)
+
+</br>
+
+
+
